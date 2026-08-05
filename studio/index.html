@@ -13,35 +13,36 @@
         <div>
           <p class="eyebrow">Runic Artifex</p>
           <h1>Brand Studio</h1>
-          <p>Vector-authoritative identities with an optional procedural material layer.</p>
+          <p>Constructed vectors, engraved into deterministic stone and gold.</p>
         </div>
-        <div class="status"><span></span> Deterministic source</div>
+        <div class="status"><span></span> Private design workshop</div>
       </header>
 
       <section class="workspace" aria-labelledby="preview-title">
         <div class="controls">
           <label for="identity">Identity</label>
           <select id="identity"></select>
-          <label class="motion"><input id="motion" type="checkbox" checked /> Animate material</label>
+          <label class="motion"><input id="motion" type="checkbox" /> Live material study</label>
           <div class="downloads">
-            <a id="download-svg" download>SVG</a>
-            <a id="download-png" download>PNG</a>
+            <a id="download-svg" download>Vector source</a>
+            <a id="download-png" download>Material PNG</a>
           </div>
         </div>
 
         <div class="preview-shell">
           <h2 id="preview-title" class="visually-hidden">Social card preview</h2>
           <div class="preview" aria-live="polite">
-            <canvas id="material" width="1200" height="630" aria-hidden="true"></canvas>
-            <img id="overlay" alt="" />
+            <img id="rendered" alt="" />
+            <canvas id="material" class="live-layer" width="1200" height="630" aria-hidden="true"></canvas>
+            <img id="overlay" class="live-layer" alt="" />
           </div>
         </div>
       </section>
 
       <section class="principles">
-        <article><span>01</span><h2>Vectors own identity</h2><p>Every glyph, sigil, ornament and layout remains inspectable source.</p></article>
-        <article><span>02</span><h2>Shaders add material</h2><p>Grain, fibers, patina and motion are optional and never required for recognition.</p></article>
-        <article><span>03</span><h2>Exports stay portable</h2><p>Static SVG and PNG assets work across GitHub, registries, documentation and print.</p></article>
+        <article><span>01</span><h2>Vectors construct</h2><p>Every glyph, sigil, ornament and layout remains inspectable source.</p></article>
+        <article><span>02</span><h2>Materials finish</h2><p>Stone, metallic light, edge relief and patina turn geometry into authored artwork.</p></article>
+        <article><span>03</span><h2>Raster is canonical</h2><p>Materialized PNG assets carry the approved finish into GitHub, registries, docs and print.</p></article>
       </section>
     </main>
     <script type="module" src="/main.ts"></script>

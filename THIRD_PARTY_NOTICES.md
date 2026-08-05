@@ -5,7 +5,7 @@ licenses.
 
 ## Fonts
 
-- **Newsreader**, distributed through `@fontsource-variable/newsreader`, is
+- **Cormorant**, distributed through `@fontsource/cormorant`, is
   licensed under the SIL Open Font License 1.1.
 - **Geist**, distributed through `@fontsource-variable/geist`, is licensed
   under the SIL Open Font License 1.1.

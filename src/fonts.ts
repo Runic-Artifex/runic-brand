@@ -3,7 +3,7 @@ import * as fontkit from "fontkit";
 
 const require = createRequire(import.meta.url);
 const displayPath = require.resolve(
-  "@fontsource-variable/newsreader/files/newsreader-latin-wght-normal.woff2",
+  "@fontsource/cormorant/files/cormorant-latin-500-normal.woff2",
 );
 const sansPath = require.resolve(
   "@fontsource-variable/geist/files/geist-latin-wght-normal.woff2",
@@ -23,6 +23,8 @@ export type VectorTextOptions = {
   anchor?: "start" | "middle" | "end";
   letterSpacing?: number;
   opacity?: number;
+  weight?: number;
+  filter?: string;
 };
 
 export type VectorText = {
@@ -39,8 +41,9 @@ export function measureVectorText(
   size: number,
   family: keyof typeof fonts,
   letterSpacing = 0,
+  weight?: number,
 ): number {
-  const font = fonts[family];
+  const font = fontFor(family, weight);
   const run = font.layout(text);
   const advances = run.positions.reduce((sum, position) => sum + position.xAdvance, 0);
   return (advances * size) / font.unitsPerEm + Math.max(0, text.length - 1) * letterSpacing;
@@ -52,18 +55,20 @@ export function fitVectorText(
   maximumWidth: number,
   family: keyof typeof fonts,
   minimumSize: number,
+  weight?: number,
 ): number {
-  const width = measureVectorText(text, preferredSize, family);
+  const width = measureVectorText(text, preferredSize, family, 0, weight);
   if (width <= maximumWidth) return preferredSize;
   return Math.max(minimumSize, preferredSize * (maximumWidth / width));
 }
 
 export function vectorText(text: string, options: VectorTextOptions): VectorText {
-  const font = fonts[options.family];
+  const font = fontFor(options.family, options.weight);
   const run = font.layout(text);
   const scale = options.size / font.unitsPerEm;
   const letterSpacing = options.letterSpacing ?? 0;
-  const width = measureVectorText(text, options.size, options.family, letterSpacing);
+  const runWidth = run.positions.reduce((sum, position) => sum + position.xAdvance, 0);
+  const width = (runWidth * options.size) / font.unitsPerEm + Math.max(0, text.length - 1) * letterSpacing;
   const anchorOffset =
     options.anchor === "middle" ? width / 2 : options.anchor === "end" ? width : 0;
   let cursor = options.x - anchorOffset;
@@ -81,8 +86,12 @@ export function vectorText(text: string, options: VectorTextOptions): VectorText
 
   return {
     width,
-    svg: `<g fill="${options.fill}" opacity="${options.opacity ?? 1}" aria-label="${escapeXml(text)}">${paths.join("")}</g>`,
+    svg: `<g fill="${options.fill}" opacity="${options.opacity ?? 1}"${options.filter ? ` filter="${options.filter}"` : ""} aria-label="${escapeXml(text)}">${paths.join("")}</g>`,
   };
+}
+
+function fontFor(family: keyof typeof fonts, _weight?: number): fontkit.Font {
+  return fonts[family];
 }
 
 function escapeXml(value: string): string {

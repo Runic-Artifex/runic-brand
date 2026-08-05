@@ -1,12 +1,15 @@
 # Runic Brand
 
-Runic Brand is the vector-authoritative identity system for the Runic Artifex
-product family. It generates deterministic SVG and PNG assets, converts all
-typography to paths, and supplies an optional WebGL material shader for richer
-documentation and presentation surfaces.
+> **Design status:** private workshop. The rendering foundation is functional,
+> but no asset is approved for adoption by the other Runic Artifex repositories yet.
 
-The shader never owns identity. Every product remains recognizable when only
-the static vector layer is available.
+Runic Brand is the source and material-rendering system for the Runic Artifex
+product family. Vector paths define typography, sigils, frames, and ornamental
+construction. A deterministic raster stage turns those masks into the canonical
+stone, engraved metal, patina, and relief artwork used on public surfaces.
+
+The vector layer remains inspectable and portable, but it is construction source,
+not the finished presentation asset. Canonical distributable artwork is PNG.
 
 ## Included identities
 
@@ -32,8 +35,10 @@ and material model.
 | `banner` | 1600 × 480 | README and documentation headers |
 | `icon` | 512 × 512 | Repository, package, application, and profile icons |
 
-`social-overlay.svg` contains only the vector foreground. The Brand Studio
-places it over the live shader without duplicating the layout.
+Each format includes an SVG construction source and a materialized PNG. The
+`social-overlay.svg` file contains only vector masks for the optional live WebGL
+material study. Do not substitute the SVG source for the canonical PNG on a
+public brand surface.
 
 ## Use the CLI
 
@@ -42,8 +47,8 @@ npm ci
 npm run generate
 
 node dist/cli.js list
-node dist/cli.js render runic-flow --format social --out flow.svg
-node dist/cli.js render runic-markup --format icon --png --out markup.png
+node dist/cli.js render runic-flow --format social --out flow.source.svg
+node dist/cli.js render runic-markup --format icon --png --scale 2 --out markup@2x.png
 node dist/cli.js render-all --out assets/generated
 ```
 
@@ -61,9 +66,9 @@ const svg = renderBrandAsset("runic-text-resources", "banner");
 npm run dev
 ```
 
-The studio combines the canonical transparent SVG with a WebGL 2 fragment
-shader. It previews each product, supports reduced motion, and links directly
-to the committed SVG and PNG exports.
+The studio shows the canonical material PNG by default. Its optional live mode
+combines the transparent vector masks with a WebGL 2 stone shader for material
+exploration; it is not silently substituted for the deterministic export.
 
 ## Verification
 
@@ -78,9 +83,9 @@ Tests prove that:
 - every identity and format renders deterministically;
 - typography contains vector paths rather than runtime font references;
 - transparent overlays contain no material background;
-- committed SVGs exactly match the renderer;
+- committed vector sources exactly match the renderer;
 - PNG dimensions match the canonical format; and
-- the shader sources retain their required WebGL 2 contracts.
+- the CPU materializer and WebGL study retain deterministic contracts.
 
 See [docs/BRAND_GUIDELINES.md](docs/BRAND_GUIDELINES.md) before adding or
 changing an identity.

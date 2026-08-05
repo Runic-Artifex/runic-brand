@@ -11,7 +11,7 @@ export const palette: BrandPalette = Object.freeze({
 });
 
 export const typography = Object.freeze({
-  display: "Newsreader Variable",
+  display: "Cormorant Medium",
   sans: "Geist Variable",
   mono: "Geist Mono",
 });
