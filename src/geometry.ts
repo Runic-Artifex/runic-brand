@@ -109,9 +109,10 @@ export function frameSvg(width: number, height: number, direction: ArtDirection 
   const bottom = height - inset;
   const density = direction === "architectural" ? 0.58 : direction === "ritual" ? 1 : 0.84;
   const corner = (x: number, y: number, sx: number, sy: number) => `<g transform="translate(${x} ${y}) scale(${sx} ${sy})">
-    <path d="M0 42V0H42M7 36L36 7M0 18L18 0M8 42V33M33 8H42"/>
-    <path d="M5 5L13 13L5 21L-3 13Z M18 2L28 12L18 22L8 12Z"/>
-    <path d="M25 0L42 17M31 0L42 11" opacity=".66"/>
+    <path d="M0 46L46 0"/>
+    <path d="M0 0L24 24M24 0V24L14 34L5 27L14 18L24 24M24 0L34 10"/>
+    <path d="M34 27L36 31L40 33L36 35L34 39L32 35L28 33L32 31Z" fill="${palette.goldDim}" stroke="none" opacity=".8"/>
+    <path d="M14 58V76M58 14H76" opacity=".72"/>
   </g>`;
   const midpoint = (x: number, y: number, rotate = 0) => `<g transform="translate(${x} ${y}) rotate(${rotate})"><path d="M-28 0H-12L0-12L12 0H28M-7 0L0 7L7 0"/><path d="M0-12V-22M-4-17L0-13L4-17" opacity=".7"/></g>`;
   return `<g fill="none" stroke="url(#gold)" stroke-width="1.25" opacity="${density}">

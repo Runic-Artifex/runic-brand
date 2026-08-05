@@ -57,21 +57,25 @@
     <rect x="22" y="22" width="1556" height="436"/>
     <rect x="29" y="29" width="1542" height="422" opacity=".23"/>
     <g transform="translate(22 22) scale(1 1)">
-    <path d="M0 42V0H42M7 36L36 7M0 18L18 0M8 42V33M33 8H42"/>
-    <path d="M5 5L13 13L5 21L-3 13Z M18 2L28 12L18 22L8 12Z"/>
-    <path d="M25 0L42 17M31 0L42 11" opacity=".66"/>
+    <path d="M0 46L46 0"/>
+    <path d="M0 0L24 24M24 0V24L14 34L5 27L14 18L24 24M24 0L34 10"/>
+    <path d="M34 27L36 31L40 33L36 35L34 39L32 35L28 33L32 31Z" fill="#75633a" stroke="none" opacity=".8"/>
+    <path d="M14 58V76M58 14H76" opacity=".72"/>
   </g><g transform="translate(1578 22) scale(-1 1)">
-    <path d="M0 42V0H42M7 36L36 7M0 18L18 0M8 42V33M33 8H42"/>
-    <path d="M5 5L13 13L5 21L-3 13Z M18 2L28 12L18 22L8 12Z"/>
-    <path d="M25 0L42 17M31 0L42 11" opacity=".66"/>
+    <path d="M0 46L46 0"/>
+    <path d="M0 0L24 24M24 0V24L14 34L5 27L14 18L24 24M24 0L34 10"/>
+    <path d="M34 27L36 31L40 33L36 35L34 39L32 35L28 33L32 31Z" fill="#75633a" stroke="none" opacity=".8"/>
+    <path d="M14 58V76M58 14H76" opacity=".72"/>
   </g><g transform="translate(22 458) scale(1 -1)">
-    <path d="M0 42V0H42M7 36L36 7M0 18L18 0M8 42V33M33 8H42"/>
-    <path d="M5 5L13 13L5 21L-3 13Z M18 2L28 12L18 22L8 12Z"/>
-    <path d="M25 0L42 17M31 0L42 11" opacity=".66"/>
+    <path d="M0 46L46 0"/>
+    <path d="M0 0L24 24M24 0V24L14 34L5 27L14 18L24 24M24 0L34 10"/>
+    <path d="M34 27L36 31L40 33L36 35L34 39L32 35L28 33L32 31Z" fill="#75633a" stroke="none" opacity=".8"/>
+    <path d="M14 58V76M58 14H76" opacity=".72"/>
   </g><g transform="translate(1578 458) scale(-1 -1)">
-    <path d="M0 42V0H42M7 36L36 7M0 18L18 0M8 42V33M33 8H42"/>
-    <path d="M5 5L13 13L5 21L-3 13Z M18 2L28 12L18 22L8 12Z"/>
-    <path d="M25 0L42 17M31 0L42 11" opacity=".66"/>
+    <path d="M0 46L46 0"/>
+    <path d="M0 0L24 24M24 0V24L14 34L5 27L14 18L24 24M24 0L34 10"/>
+    <path d="M34 27L36 31L40 33L36 35L34 39L32 35L28 33L32 31Z" fill="#75633a" stroke="none" opacity=".8"/>
+    <path d="M14 58V76M58 14H76" opacity=".72"/>
   </g>
     <g transform="translate(800 22) rotate(0)"><path d="M-28 0H-12L0-12L12 0H28M-7 0L0 7L7 0"/><path d="M0-12V-22M-4-17L0-13L4-17" opacity=".7"/></g><g transform="translate(800 458) rotate(180)"><path d="M-28 0H-12L0-12L12 0H28M-7 0L0 7L7 0"/><path d="M0-12V-22M-4-17L0-13L4-17" opacity=".7"/></g><g transform="translate(22 240) rotate(90)"><path d="M-28 0H-12L0-12L12 0H28M-7 0L0 7L7 0"/><path d="M0-12V-22M-4-17L0-13L4-17" opacity=".7"/></g><g transform="translate(1578 240) rotate(-90)"><path d="M-28 0H-12L0-12L12 0H28M-7 0L0 7L7 0"/><path d="M0-12V-22M-4-17L0-13L4-17" opacity=".7"/></g>
     <path d="M34 146V173M34 307V334M1566 146V173M1566 307V334" opacity=".7"/>
