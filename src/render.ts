@@ -100,7 +100,7 @@ function renderSocial(identity: BrandIdentity, options: RenderOptions & { seed: 
     backdrop(width, height, options.seed, options),
     atmosphericGeometry(direction),
     frameSvg(width, height, direction),
-    `<path d="M${layout.left + 2} ${layout.ruleY}H${layout.ruleBreak - 18}M${layout.ruleBreak + 18} ${layout.ruleY}H${layout.ruleEnd}" fill="none" stroke="url(#gold)" stroke-width="1.7" opacity=".92"/>`,
+    `<path d="M${layout.left + 2} ${layout.ruleY}H${layout.ruleBreak - 18}M${layout.ruleBreak + 18} ${layout.ruleY}H${layout.ruleEnd}" fill="none" stroke="${palette.gold}" stroke-width="1.7" opacity=".92"/>`,
     ornamentSvg(layout.ruleBreak, layout.ruleY, 0.76, 0.9),
     title,
     tagline,
@@ -108,7 +108,12 @@ function renderSocial(identity: BrandIdentity, options: RenderOptions & { seed: 
     sigilSvg(identity.sigil, layout.left + 31, 513, 34, identity.accent, identity.accent),
     `<path d="M${layout.left + 65} 487V539" stroke="${palette.goldDim}"/>`,
     label,
-    identity.id === "runic-artifex" ? constellationSvg(direction) : productOrbitSvg(identity, direction),
+    scaleAround(
+      identity.id === "runic-artifex" ? constellationSvg(direction) : productOrbitSvg(identity, direction),
+      930,
+      316,
+      layout.diagramScale,
+    ),
   ].join("\n");
 
   return root(identity, "social", content, options.seed, direction);
@@ -256,14 +261,19 @@ function socialLayout(direction: ArtDirection): {
   ruleY: number;
   ruleBreak: number;
   ruleEnd: number;
+  diagramScale: number;
 } {
   if (direction === "architectural") {
-    return { left: 74, titleSize: 91, titleWidth: 590, titleWeight: 400, titleBaseline: 264, taglineSize: 28, taglineWidth: 590, taglineBaseline: 352, ruleY: 302, ruleBreak: 356, ruleEnd: 650 };
+    return { left: 78, titleSize: 86, titleWidth: 560, titleWeight: 400, titleBaseline: 262, taglineSize: 27, taglineWidth: 550, taglineBaseline: 349, ruleY: 299, ruleBreak: 342, ruleEnd: 620, diagramScale: 0.86 };
   }
   if (direction === "ritual") {
-    return { left: 72, titleSize: 104, titleWidth: 625, titleWeight: 500, titleBaseline: 275, taglineSize: 31, taglineWidth: 612, taglineBaseline: 367, ruleY: 314, ruleBreak: 356, ruleEnd: 663 };
+    return { left: 76, titleSize: 106, titleWidth: 590, titleWeight: 500, titleBaseline: 271, taglineSize: 29, taglineWidth: 570, taglineBaseline: 358, ruleY: 306, ruleBreak: 342, ruleEnd: 630, diagramScale: 0.9 };
   }
-  return { left: 74, titleSize: 114, titleWidth: 625, titleWeight: 500, titleBaseline: 275, taglineSize: 31, taglineWidth: 604, taglineBaseline: 365, ruleY: 313, ruleBreak: 356, ruleEnd: 650 };
+  return { left: 78, titleSize: 104, titleWidth: 580, titleWeight: 500, titleBaseline: 268, taglineSize: 29, taglineWidth: 565, taglineBaseline: 355, ruleY: 304, ruleBreak: 342, ruleEnd: 625, diagramScale: 0.88 };
+}
+
+function scaleAround(content: string, x: number, y: number, scale: number): string {
+  return `<g transform="translate(${x} ${y}) scale(${scale}) translate(${-x} ${-y})">${content}</g>`;
 }
 
 function atmosphericGeometry(direction: ArtDirection): string {
