@@ -55,7 +55,6 @@
 <rect width="1600" height="480" fill="url(#ground)"/><rect width="1600" height="480" fill="#17241a" filter="url(#patina)" opacity=".72"/><rect width="1600" height="480" fill="url(#fibers)" opacity=".58"/><rect width="1600" height="480" fill="#a9925b" filter="url(#paper-grain)" opacity=".2"/><rect width="1600" height="480" fill="url(#vignette)"/>
 <g fill="none" stroke="url(#gold)" stroke-width="1.25" opacity="0.84">
     <rect x="22" y="22" width="1556" height="436"/>
-    <rect x="29" y="29" width="1542" height="422" opacity=".23"/>
     <g transform="translate(22 22) scale(1 1)">
     <path d="M0 46L46 0"/>
     <path d="M0 0L24 24M24 0V24L14 34L5 27L14 18L24 24M24 0L34 10"/>

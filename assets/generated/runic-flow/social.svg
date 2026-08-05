@@ -56,7 +56,6 @@
 <g transform="translate(675 139)" fill="none" stroke="#75633a" stroke-width="1" opacity="0.17"><path d="M-12 0H12M0-12V12M-8.64-8.64L8.64 8.64M8.64-8.64L-8.64 8.64"/><path d="M0-8L4-4L8 0L4 4L0 8L-4 4L-8 0L-4-4Z"/></g><g transform="translate(706 432)" fill="none" stroke="#75633a" stroke-width="1" opacity="0.2"><path d="M-14.5 0H14.5M0-14.5V14.5M-10.44-10.44L10.44 10.44M10.44-10.44L-10.44 10.44"/><path d="M0-10.5L4-4L10.5 0L4 4L0 10.5L-4 4L-10.5 0L-4-4Z"/></g><g transform="translate(1112 144)" fill="none" stroke="#75633a" stroke-width="1" opacity="0.18"><path d="M-12.5 0H12.5M0-12.5V12.5M-9-9L9 9M9-9L-9 9"/><path d="M0-8.5L4-4L8.5 0L4 4L0 8.5L-4 4L-8.5 0L-4-4Z"/></g><g transform="translate(1131 472)" fill="none" stroke="#75633a" stroke-width="1" opacity="0.17"><path d="M-14 0H14M0-14V14M-10.08-10.08L10.08 10.08M10.08-10.08L-10.08 10.08"/><path d="M0-10L4-4L10 0L4 4L0 10L-4 4L-10 0L-4-4Z"/></g>
 <g fill="none" stroke="url(#gold)" stroke-width="1.25" opacity="0.84">
     <rect x="22" y="22" width="1156" height="586"/>
-    <rect x="29" y="29" width="1142" height="572" opacity=".23"/>
     <g transform="translate(22 22) scale(1 1)">
     <path d="M0 46L46 0"/>
     <path d="M0 0L24 24M24 0V24L14 34L5 27L14 18L24 24M24 0L34 10"/>

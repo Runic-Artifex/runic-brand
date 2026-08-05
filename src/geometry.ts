@@ -117,7 +117,6 @@ export function frameSvg(width: number, height: number, direction: ArtDirection 
   const midpoint = (x: number, y: number, rotate = 0) => `<g transform="translate(${x} ${y}) rotate(${rotate})"><path d="M-28 0H-12L0-12L12 0H28M-7 0L0 7L7 0"/><path d="M0-12V-22M-4-17L0-13L4-17" opacity=".7"/></g>`;
   return `<g fill="none" stroke="url(#gold)" stroke-width="1.25" opacity="${density}">
     <rect x="${inset}" y="${inset}" width="${width - inset * 2}" height="${height - inset * 2}"/>
-    <rect x="${inset + 7}" y="${inset + 7}" width="${width - (inset + 7) * 2}" height="${height - (inset + 7) * 2}" opacity=".23"/>
     ${corner(inset, inset, 1, 1)}${corner(right, inset, -1, 1)}${corner(inset, bottom, 1, -1)}${corner(right, bottom, -1, -1)}
     ${midpoint(width / 2, inset)}${midpoint(width / 2, bottom, 180)}${midpoint(inset, height / 2, 90)}${midpoint(right, height / 2, -90)}
     <path d="M${inset + 12} ${height / 2 - 94}V${height / 2 - 67}M${inset + 12} ${height / 2 + 67}V${height / 2 + 94}M${right - 12} ${height / 2 - 94}V${height / 2 - 67}M${right - 12} ${height / 2 + 67}V${height / 2 + 94}" opacity=".7"/>
