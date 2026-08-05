@@ -199,13 +199,11 @@ function constellationSvg(direction: ArtDirection): string {
     <ellipse cx="${center.x}" cy="${center.y}" rx="${radiusX}" ry="${radiusY}" fill="none" stroke="${palette.goldDim}" stroke-dasharray="4 10" opacity=".58"/>
     <ellipse cx="${center.x}" cy="${center.y}" rx="143" ry="151" fill="none" stroke="${palette.goldDim}" opacity=".27"/>
     <path d="M${center.x - radiusX - 47} ${center.y}H${center.x + radiusX + 47}M${center.x} ${center.y - radiusY - 38}V${center.y + radiusY + 38}" stroke="${palette.goldDim}" stroke-width=".8" stroke-dasharray="3 8" opacity=".32"/>
-    ${nodes.map((node) => `<path d="M${center.x} ${center.y}L${node.x.toFixed(2)} ${node.y.toFixed(2)}" stroke="url(#gold)" stroke-width="1.35" stroke-dasharray="${lineDash}" opacity=".72"/><path d="M${((center.x + node.x) / 2 - 5).toFixed(2)} ${((center.y + node.y) / 2).toFixed(2)}l5-5 5 5-5 5Z" fill="#0b100d" stroke="${palette.gold}" stroke-width="1" opacity=".9"/>`).join("")}
+    ${nodes.map((node) => `<path d="M${center.x} ${center.y}L${node.x.toFixed(2)} ${node.y.toFixed(2)}" stroke="${palette.gold}" stroke-width="1.35" stroke-dasharray="${lineDash}" opacity=".72"/><path d="M${((center.x + node.x) / 2 - 5).toFixed(2)} ${((center.y + node.y) / 2).toFixed(2)}l5-5 5 5-5 5Z" fill="#0b100d" stroke="${palette.gold}" stroke-width="1" opacity=".9"/>`).join("")}
     ${nodes.map((node) => medallionSvg(node.identity.sigil, node.x, node.y, nodeDiameter, node.identity.accent)).join("")}
     ${medallionSvg("artifex", center.x, center.y, direction === "ritual" ? 116 : 106, palette.rust, "primary")}
-    ${ornamentSvg(center.x, center.y - radiusY - 48, 0.75, 0.5)}
-    ${ornamentSvg(center.x, center.y + radiusY + 48, 0.75, 0.5)}
-    ${axisStaffSvg(center.x, center.y - radiusY - 53, 1)}
-    ${axisStaffSvg(center.x, center.y + radiusY + 53, -1)}
+    ${axisStaffSvg(center.x, center.y - radiusY - 66, 1)}
+    ${axisStaffSvg(center.x, center.y + radiusY + 66, -1)}
     ${sideRuneSvg(center.x - radiusX - 55, center.y)}
     ${sideRuneSvg(center.x + radiusX + 55, center.y)}
   </g>`;
@@ -241,11 +239,11 @@ function productOrbitSvg(identity: BrandIdentity, direction: ArtDirection): stri
       <polygon points="${polygon}" opacity=".24"/>
       <path d="M${x - 239} ${y}H${x + 239}M${x} ${y - 235}V${y + 235}" stroke-dasharray="2 9" opacity=".28"/>
     </g>
-    ${nodes.map((node) => `<path d="M${x} ${y}L${node.x.toFixed(2)} ${node.y.toFixed(2)}" stroke="url(#gold)" stroke-width="1.35" stroke-dasharray="9 8" opacity=".67"/><path d="M${((x + node.x) / 2 - 5).toFixed(2)} ${((y + node.y) / 2).toFixed(2)}l5-5 5 5-5 5Z" fill="#0b100d" stroke="${palette.gold}" stroke-width="1" opacity=".85"/>`).join("")}
+    ${nodes.map((node) => `<path d="M${x} ${y}L${node.x.toFixed(2)} ${node.y.toFixed(2)}" stroke="${palette.gold}" stroke-width="1.35" stroke-dasharray="9 8" opacity=".67"/><path d="M${((x + node.x) / 2 - 5).toFixed(2)} ${((y + node.y) / 2).toFixed(2)}l5-5 5 5-5 5Z" fill="#0b100d" stroke="${palette.gold}" stroke-width="1" opacity=".85"/>`).join("")}
     <g opacity=".72">${nodes.map((node) => medallionSvg(node.identity.sigil, node.x, node.y, 57, node.identity.accent)).join("")}</g>
     ${medallionSvg(identity.sigil, x, y, direction === "ritual" ? 190 : 176, identity.accent, "primary")}
-    ${axisStaffSvg(x, y - radiusY - 48, 1)}
-    ${axisStaffSvg(x, y + radiusY + 48, -1)}
+    ${axisStaffSvg(x, y - radiusY - 61, 1)}
+    ${axisStaffSvg(x, y + radiusY + 61, -1)}
   </g>`;
 }
 
@@ -277,11 +275,12 @@ function scaleAround(content: string, x: number, y: number, scale: number): stri
 }
 
 function atmosphericGeometry(direction: ArtDirection): string {
+  const starOpacity = direction === "architectural" ? 0.08 : direction === "ritual" ? 0.18 : 0.14;
   const stars = [
-    starRuneSvg(675, 139, 24, direction === "architectural" ? 0.09 : 0.17),
-    starRuneSvg(706, 432, 29, direction === "architectural" ? 0.08 : 0.2),
-    starRuneSvg(1112, 144, 25, direction === "architectural" ? 0.08 : 0.18),
-    starRuneSvg(1131, 472, 28, direction === "architectural" ? 0.08 : 0.17),
+    starRuneSvg(700, 160, 22, starOpacity),
+    starRuneSvg(1160, 160, 22, starOpacity),
+    starRuneSvg(700, 472, 22, starOpacity),
+    starRuneSvg(1160, 472, 22, starOpacity),
   ].join("");
   if (direction === "architectural") {
     return `<g opacity=".2"><path d="M666 88H1140M666 157H1140M666 226H1140M666 295H1140M666 364H1140M666 433H1140M720 62V560M790 62V560M860 62V560M930 62V560M1000 62V560M1070 62V560" stroke="${palette.goldDim}" stroke-width=".45"/>${stars}</g>`;
