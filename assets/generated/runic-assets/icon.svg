@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="title description">
+  <title id="title">Runic Assets icon</title>
+  <desc id="description">Generated from the Runic Artifex vector brand system.</desc>
+  <defs>
+    <linearGradient id="ground" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b100d"/>
+      <stop offset=".52" stop-color="#101914"/>
+      <stop offset="1" stop-color="#07100b"/>
+    </linearGradient>
+    <radialGradient id="vignette" cx="50%" cy="43%" r="73%">
+      <stop offset="0" stop-color="#314536" stop-opacity=".16"/>
+      <stop offset=".56" stop-color="#0b100d" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000" stop-opacity=".68"/>
+    </radialGradient>
+    <radialGradient id="medallion" cx="38%" cy="32%" r="72%">
+      <stop offset="0" stop-color="#314536"/>
+      <stop offset=".58" stop-color="#18231b"/>
+      <stop offset="1" stop-color="#0b100d"/>
+    </radialGradient>
+    <filter id="grain" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency=".68" numOctaves="4" seed="985" stitchTiles="stitch" result="noise"/>
+      <feColorMatrix in="noise" type="matrix" values=".35 0 0 0 .18  0 .3 0 0 .17  0 0 .18 0 .1  0 0 0 .23 0"/>
+    </filter>
+    <filter id="soft-glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="2.4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+<rect width="512" height="512" fill="url(#ground)"/><rect width="512" height="512" fill="url(#vignette)"/><rect width="512" height="512" filter="url(#grain)" opacity=".48"/>
+<g fill="none" stroke="#75633a" stroke-width="1.5" opacity=".9"><rect x="22" y="22" width="468" height="468"/><path d="M22 52V22H52M29 46L46 29"/><path d="M460 22H490V52M466 29L483 46"/><path d="M22 460V490H52M29 466L46 483"/><path d="M460 490H490V460M466 483L483 466"/><path d="M234 22H248L256 14L264 22H278"/><path d="M234 490H248L256 498L264 490H278"/></g>
+<circle cx="256" cy="256" r="187" fill="none" stroke="#75633a" opacity=".34"/>
+<circle cx="256" cy="256" r="164" fill="none" stroke="#75633a" stroke-dasharray="5 14" opacity=".48"/>
+<g transform="translate(256 64) scale(0.86)" fill="none" stroke="#75633a" stroke-width="1.5" opacity=".5"><path d="M-16 0H-6L0-8 6 0H16M0-8V-19M-7-14L0-7 7-14"/><circle cx="0" cy="0" r="2" fill="#75633a"/></g>
+<g transform="translate(256 448) scale(0.86)" fill="none" stroke="#75633a" stroke-width="1.5" opacity=".5"><path d="M-16 0H-6L0-8 6 0H16M0-8V-19M-7-14L0-7 7-14"/><circle cx="0" cy="0" r="2" fill="#75633a"/></g>
+<g><circle cx="256" cy="256" r="132" fill="#0b100d" opacity=".72" stroke="#75633a" stroke-width="1"/><circle cx="256" cy="256" r="124" fill="url(#medallion)" stroke="#c9a65b" stroke-width="4"/><circle cx="256" cy="256" r="116" fill="none" stroke="#75633a" stroke-width="1"/><g transform="translate(256 256) scale(1.5375999999999999)" fill="none" stroke="#c9a65b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><style>.sigil-accent{fill:#a98755;stroke:#a98755}</style><polyline points="0,-38 34,-20 0,-2 -34,-20 0,-38"/><polyline points="-34,-20 -34,19 0,38 34,19 34,-20"/><path d="M0 -2L0 38"/><path d="M-34 0L0 19"/><path d="M34 0L0 19"/></g></g>
+</svg>

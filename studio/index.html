@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Interactive shader and vector preview for the Runic Artifex brand system." />
+    <title>Runic Artifex Brand Studio</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <main>
+      <header class="masthead">
+        <div>
+          <p class="eyebrow">Runic Artifex</p>
+          <h1>Brand Studio</h1>
+          <p>Vector-authoritative identities with an optional procedural material layer.</p>
+        </div>
+        <div class="status"><span></span> Deterministic source</div>
+      </header>
+
+      <section class="workspace" aria-labelledby="preview-title">
+        <div class="controls">
+          <label for="identity">Identity</label>
+          <select id="identity"></select>
+          <label class="motion"><input id="motion" type="checkbox" checked /> Animate material</label>
+          <div class="downloads">
+            <a id="download-svg" download>SVG</a>
+            <a id="download-png" download>PNG</a>
+          </div>
+        </div>
+
+        <div class="preview-shell">
+          <h2 id="preview-title" class="visually-hidden">Social card preview</h2>
+          <div class="preview" aria-live="polite">
+            <canvas id="material" width="1200" height="630" aria-hidden="true"></canvas>
+            <img id="overlay" alt="" />
+          </div>
+        </div>
+      </section>
+
+      <section class="principles">
+        <article><span>01</span><h2>Vectors own identity</h2><p>Every glyph, sigil, ornament and layout remains inspectable source.</p></article>
+        <article><span>02</span><h2>Shaders add material</h2><p>Grain, fibers, patina and motion are optional and never required for recognition.</p></article>
+        <article><span>03</span><h2>Exports stay portable</h2><p>Static SVG and PNG assets work across GitHub, registries, documentation and print.</p></article>
+      </section>
+    </main>
+    <script type="module" src="/main.ts"></script>
+  </body>
+</html>

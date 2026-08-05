@@ -1,0 +1,54 @@
+{
+  "name": "@runic-artifex/brand",
+  "version": "0.1.0-preview.1",
+  "description": "Deterministic vector assets and shader materials for the Runic Artifex product family.",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "bin": {
+    "runic-brand": "./dist/cli.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./shader": {
+      "types": "./dist/shader.d.ts",
+      "import": "./dist/shader.js"
+    }
+  },
+  "files": [
+    "dist",
+    "assets/generated",
+    "LICENSE",
+    "README.md",
+    "THIRD_PARTY_NOTICES.md"
+  ],
+  "scripts": {
+    "clean": "node scripts/clean.mjs",
+    "check": "tsc --noEmit",
+    "build:library": "tsc -p tsconfig.build.json",
+    "generate": "npm run build:library && node dist/cli.js render-all",
+    "build:studio": "vite build --config studio/vite.config.ts",
+    "build": "npm run clean && npm run generate && npm run build:studio",
+    "dev": "npm run generate && vite --config studio/vite.config.ts",
+    "test": "npm run build && node --test tests/*.test.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/geist": "5.3.0",
+    "@fontsource-variable/newsreader": "5.3.0",
+    "fontkit": "2.0.4",
+    "sharp": "0.35.3"
+  },
+  "devDependencies": {
+    "@types/fontkit": "2.0.9",
+    "@types/node": "26.1.2",
+    "tsx": "4.23.8",
+    "typescript": "7.0.2",
+    "vite": "8.2.0"
+  }
+}
