@@ -11,8 +11,8 @@ medallions, visible connecting lines, and a shared geometric grammar.
 1. **Tokens** own color, spacing, line weight, and typography choices.
 2. **Sigils** own project recognition and must remain readable in one color.
 3. **Layouts** compose tokens and sigils into canonical formats.
-4. **Materials** add grain, patina, illumination, and motion without changing
-   the underlying identity.
+4. **Materials** turn the vector masks into canonical engraved artwork through
+   stone variation, metallic light, edge relief, wear, and patina.
 
 Never encode required text, geometry, or meaning exclusively in a shader.
 
@@ -32,7 +32,7 @@ Product accents may vary, but gold remains the common connective material.
 
 ## Typography
 
-Newsreader is the display face; Geist is the supporting sans face. The renderer
+Cormorant Medium is the display face; Geist is the supporting sans face. The renderer
 uses the OFL-licensed Fontsource distributions and converts every glyph to an
 SVG path. Generated assets must not contain `<text>` elements or rely on local
 font installation.
@@ -42,7 +42,7 @@ font installation.
 A sigil must:
 
 - fit the common 100 × 100 construction grid;
-- use rounded joins and caps;
+- use the shared square-cap, miter-join engraving grammar;
 - survive monochrome rendering;
 - remain recognizable at 32 pixels;
 - avoid letters as its primary shape; and
@@ -53,17 +53,18 @@ For example, `RunicFlow.RunicToolkit` uses the Flow sigil and Flow accent.
 
 ## Material and motion
 
-The procedural material uses seeded noise, broad moss variation, horizontal
-fiber noise, sparse dust, and a vignette. Motion should be slow enough to read
-as ambient material rather than animation.
+The deterministic export material uses seeded multi-scale mineral noise, moss
+variation, directional light, fine grain, metal weathering, a cut-shadow edge,
+and raised highlights. Its PNG output is the canonical public artwork.
 
-All live surfaces must honor `prefers-reduced-motion`. Static exports use the
-SVG material filter and are always available as the fallback.
+The WebGL shader is a live material study. It must honor `prefers-reduced-motion`
+and may never become the only way to obtain an identity. The SVG is retained as
+editable construction source, not as a cheaper public fallback.
 
 ## Clear space and alteration
 
 - Keep at least one medallion-ring width around a standalone sigil.
-- Do not stretch, skew, rotate, bevel, or add drop shadows to sigils.
+- Do not stretch, skew, rotate, or add effects outside the approved materializer.
 - Do not recolor shared gold geometry with a project accent.
 - Do not place title text inside a medallion.
 - Do not edit generated assets directly; change the renderer or identity source.

@@ -1,7 +1,7 @@
 {
   "name": "@runic-artifex/brand",
   "version": "0.1.0-preview.1",
-  "description": "Deterministic vector assets and shader materials for the Runic Artifex product family.",
+  "description": "Deterministic engraved stone and gold brand assets for the Runic Artifex product family.",
   "private": true,
   "type": "module",
   "license": "MIT",
@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "@fontsource-variable/geist": "5.3.0",
-    "@fontsource-variable/newsreader": "5.3.0",
+    "@fontsource/cormorant": "5.3.0",
     "fontkit": "2.0.4",
     "sharp": "0.35.3"
   },

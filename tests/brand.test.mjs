@@ -7,6 +7,7 @@ import {
   dimensions,
   fragmentShader,
   identities,
+  materializeBrandPng,
   renderBrandAsset,
   vertexShader,
 } from "../dist/index.js";
@@ -37,7 +38,17 @@ test("keeps the overlay transparent for the live shader", () => {
   assert.match(overlay, /Runic Flow/);
 });
 
-test("committed SVGs match the renderer", async () => {
+test("materializes deterministic stone and engraving from the vector mask", async () => {
+  const overlay = renderBrandAsset("runic-artifex", "icon", { transparent: true });
+  const first = await materializeBrandPng(overlay, 128, 128, 41);
+  const second = await materializeBrandPng(overlay, 128, 128, 41);
+  assert.deepEqual(first, second);
+  const metadata = await sharp(first).metadata();
+  assert.equal(metadata.width, 128);
+  assert.equal(metadata.height, 128);
+});
+
+test("committed vector construction sources match the renderer", async () => {
   for (const identity of identities) {
     for (const format of ["social", "banner", "icon"]) {
       const committed = await readFile(
@@ -51,7 +62,7 @@ test("committed SVGs match the renderer", async () => {
 
 test("committed PNGs have the canonical dimensions", async () => {
   for (const identity of identities) {
-    for (const format of ["social", "icon"]) {
+    for (const format of ["social", "banner", "icon"]) {
       const metadata = await sharp(
         fileURLToPath(new URL(`../assets/generated/${identity.id}/${format}.png`, import.meta.url)),
       ).metadata();

@@ -41,22 +41,30 @@ float fbm(vec2 p) {
   return value;
 }
 
+float ridge(float value) {
+  return 1.0 - abs(value * 2.0 - 1.0);
+}
+
 void main() {
   vec2 aspect = vec2(u_resolution.x / u_resolution.y, 1.0);
   vec2 p = (v_uv - 0.5) * aspect;
-  float drift = u_time * 0.012;
-  float broad = fbm(p * 2.4 + vec2(drift, -drift * 0.7));
-  float fiber = fbm(vec2(p.x * 32.0, p.y * 5.0) + broad * 2.0);
-  float speck = step(0.965, hash(floor(v_uv * u_resolution * 0.34)));
+  float drift = u_time * 0.004;
+  float warp = fbm(p * 1.8 + vec2(drift, -drift * 0.6));
+  float broad = fbm(p * 3.1 + vec2(warp * 1.7, -warp * 1.15));
+  float mineral = ridge(fbm(p * 8.5 + vec2(broad * 2.4, warp)));
+  float fiber = fbm(vec2(p.x * 22.0, p.y * 3.2) + broad * 1.4);
+  float grain = hash(floor(v_uv * u_resolution * 0.72)) - 0.5;
+  float vein = smoothstep(0.93, 0.985, mineral);
   float vignette = smoothstep(0.84, 0.22, length(p));
 
-  vec3 ink = vec3(0.035, 0.058, 0.043);
-  vec3 moss = vec3(0.085, 0.135, 0.102);
-  vec3 color = mix(ink, moss, 0.20 + broad * 0.22);
-  color += u_accent * max(0.0, broad - 0.66) * 0.075;
-  color += (fiber - 0.5) * 0.045;
-  color += speck * vec3(0.13, 0.11, 0.065);
-  color *= mix(0.45, 1.0, vignette);
+  vec3 ink = vec3(0.018, 0.032, 0.023);
+  vec3 stone = vec3(0.050, 0.086, 0.060);
+  vec3 color = mix(ink, stone, 0.16 + broad * 0.27);
+  color += u_accent * max(0.0, broad - 0.72) * 0.026;
+  color += (fiber - 0.5) * 0.018;
+  color += grain * 0.011;
+  color -= vein * vec3(0.022, 0.031, 0.024);
+  color *= mix(0.38, 1.0, vignette);
 
   outColor = vec4(color, 1.0);
 }`;

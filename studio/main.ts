@@ -4,6 +4,7 @@ import { fragmentShader, vertexShader } from "../src/shader.js";
 const select = element<HTMLSelectElement>("identity");
 const motion = element<HTMLInputElement>("motion");
 const overlay = element<HTMLImageElement>("overlay");
+const rendered = element<HTMLImageElement>("rendered");
 const canvas = element<HTMLCanvasElement>("material");
 const downloadSvg = element<HTMLAnchorElement>("download-svg");
 const downloadPng = element<HTMLAnchorElement>("download-png");
@@ -15,8 +16,7 @@ for (const identity of identities) {
   select.append(option);
 }
 
-const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-motion.checked = !reducedMotion;
+motion.checked = false;
 
 const gl = requireWebGl(canvas);
 
@@ -41,12 +41,21 @@ function updateIdentity(): void {
   const root = `/${identity.id}`;
   overlay.src = `${root}/social-overlay.svg`;
   overlay.alt = `${identity.name} social card rendered from vector paths`;
+  rendered.src = `${root}/social.png`;
+  rendered.alt = `${identity.name} engraved stone and gold social card`;
   downloadSvg.href = `${root}/social.svg`;
   downloadSvg.download = `${identity.id}-social.svg`;
   downloadPng.href = `${root}/social.png`;
   downloadPng.download = `${identity.id}-social.png`;
   seed = identity.id.split("").reduce((hash, character) => (hash * 31 + character.charCodeAt(0)) % 997, 17);
   accent = hex(identity.accent);
+}
+
+function updateMode(): void {
+  rendered.hidden = motion.checked;
+  for (const layer of document.querySelectorAll<HTMLElement>(".live-layer")) {
+    layer.hidden = !motion.checked;
+  }
 }
 
 function draw(timestamp: number): void {
@@ -60,7 +69,9 @@ function draw(timestamp: number): void {
 }
 
 select.addEventListener("change", updateIdentity);
+motion.addEventListener("change", updateMode);
 updateIdentity();
+updateMode();
 requestAnimationFrame(draw);
 
 function createProgram(context: WebGL2RenderingContext, vertex: string, fragment: string): WebGLProgram {
