@@ -1,5 +1,5 @@
 import { fitVectorText, vectorText } from "./fonts.js";
-import { frameSvg, medallionSvg, ornamentSvg, sigilSvg, starRuneSvg } from "./geometry.js";
+import { frameSvg, medallionSvg, sigilSvg } from "./geometry.js";
 import { getIdentity, identities } from "./identities.js";
 import { materialBackground, materialDefinitions } from "./material.js";
 import type { ArtDirection, BrandFormat, BrandIdentity, RenderOptions } from "./model.js";
@@ -100,8 +100,9 @@ function renderSocial(identity: BrandIdentity, options: RenderOptions & { seed: 
     backdrop(width, height, options.seed, options),
     atmosphericGeometry(direction),
     frameSvg(width, height, direction),
-    `<path d="M${layout.left + 2} ${layout.ruleY}H${layout.ruleBreak - 18}M${layout.ruleBreak + 18} ${layout.ruleY}H${layout.ruleEnd}" fill="none" stroke="${palette.gold}" stroke-width="1.7" opacity=".92"/>`,
-    ornamentSvg(layout.ruleBreak, layout.ruleY, 0.76, 0.9),
+    `<path d="M${layout.left + 2} ${layout.ruleY}H${layout.ruleEnd}" fill="none" stroke="${palette.gold}" stroke-width="1.7" opacity=".92"/>`,
+    titleStaffSvg(layout.left + 2, layout.ruleY, -90),
+    titleStaffSvg(layout.ruleEnd, layout.ruleY, 90),
     title,
     tagline,
     `<circle cx="${layout.left + 31}" cy="513" r="27" fill="#09100b" stroke="${identity.accent}" stroke-width="2.2"/>`,
@@ -144,11 +145,12 @@ function renderBanner(identity: BrandIdentity, options: RenderOptions & { seed: 
   const content = [
     backdrop(width, height, options.seed, options),
     frameSvg(width, height, direction),
-    `<path d="M90 257H430M455 257H1000" fill="none" stroke="${palette.gold}" stroke-width="2" opacity=".8"/>`,
-    ornamentSvg(442, 257, 0.68),
+    `<path d="M90 257H1000" fill="none" stroke="${palette.gold}" stroke-width="2" opacity=".8"/>`,
+    titleStaffSvg(90, 257, -90),
+    titleStaffSvg(1000, 257, 90),
     title,
     tagline,
-    `<g opacity=".24"><circle cx="1320" cy="240" r="170" fill="none" stroke="${palette.goldDim}"/><circle cx="1320" cy="240" r="135" fill="none" stroke="${palette.goldDim}" stroke-dasharray="4 11"/>${ornamentSvg(1320, 58, 0.8)}${ornamentSvg(1320, 422, 0.8)}</g>`,
+    `<g opacity=".24"><circle cx="1320" cy="240" r="170" fill="none" stroke="${palette.goldDim}"/><circle cx="1320" cy="240" r="135" fill="none" stroke="${palette.goldDim}" stroke-dasharray="4 11"/></g>`,
     medallionSvg(identity.sigil, 1320, 240, 190, identity.accent),
   ].join("\n");
   return root(identity, "banner", content, options.seed, direction);
@@ -162,8 +164,6 @@ function renderIcon(identity: BrandIdentity, options: RenderOptions & { seed: nu
     frameSvg(width, height, direction),
     `<circle cx="256" cy="256" r="187" fill="none" stroke="${palette.goldDim}" opacity=".34"/>`,
     `<circle cx="256" cy="256" r="164" fill="none" stroke="${palette.goldDim}" stroke-dasharray="5 14" opacity=".48"/>`,
-    ornamentSvg(256, 64, 0.86),
-    ornamentSvg(256, 448, 0.86),
     medallionSvg(identity.sigil, 256, 256, 248, identity.accent),
   ].join("\n");
   return root(identity, "icon", content, options.seed, direction);
@@ -202,10 +202,6 @@ function constellationSvg(direction: ArtDirection): string {
     ${nodes.map((node) => `<path d="M${center.x} ${center.y}L${node.x.toFixed(2)} ${node.y.toFixed(2)}" stroke="${palette.gold}" stroke-width="1.35" stroke-dasharray="${lineDash}" opacity=".72"/><path d="M${((center.x + node.x) / 2 - 5).toFixed(2)} ${((center.y + node.y) / 2).toFixed(2)}l5-5 5 5-5 5Z" fill="#0b100d" stroke="${palette.gold}" stroke-width="1" opacity=".9"/>`).join("")}
     ${nodes.map((node) => medallionSvg(node.identity.sigil, node.x, node.y, nodeDiameter, node.identity.accent)).join("")}
     ${medallionSvg("artifex", center.x, center.y, direction === "ritual" ? 116 : 106, palette.rust, "primary")}
-    ${axisStaffSvg(center.x, center.y - radiusY - 66, 1)}
-    ${axisStaffSvg(center.x, center.y + radiusY + 66, -1)}
-    ${sideRuneSvg(center.x - radiusX - 55, center.y)}
-    ${sideRuneSvg(center.x + radiusX + 55, center.y)}
   </g>`;
 }
 
@@ -242,8 +238,6 @@ function productOrbitSvg(identity: BrandIdentity, direction: ArtDirection): stri
     ${nodes.map((node) => `<path d="M${x} ${y}L${node.x.toFixed(2)} ${node.y.toFixed(2)}" stroke="${palette.gold}" stroke-width="1.35" stroke-dasharray="9 8" opacity=".67"/><path d="M${((x + node.x) / 2 - 5).toFixed(2)} ${((y + node.y) / 2).toFixed(2)}l5-5 5 5-5 5Z" fill="#0b100d" stroke="${palette.gold}" stroke-width="1" opacity=".85"/>`).join("")}
     <g opacity=".72">${nodes.map((node) => medallionSvg(node.identity.sigil, node.x, node.y, 57, node.identity.accent)).join("")}</g>
     ${medallionSvg(identity.sigil, x, y, direction === "ritual" ? 190 : 176, identity.accent, "primary")}
-    ${axisStaffSvg(x, y - radiusY - 61, 1)}
-    ${axisStaffSvg(x, y + radiusY + 61, -1)}
   </g>`;
 }
 
@@ -257,17 +251,16 @@ function socialLayout(direction: ArtDirection): {
   taglineWidth: number;
   taglineBaseline: number;
   ruleY: number;
-  ruleBreak: number;
   ruleEnd: number;
   diagramScale: number;
 } {
   if (direction === "architectural") {
-    return { left: 78, titleSize: 86, titleWidth: 560, titleWeight: 400, titleBaseline: 262, taglineSize: 27, taglineWidth: 550, taglineBaseline: 349, ruleY: 299, ruleBreak: 342, ruleEnd: 620, diagramScale: 0.86 };
+    return { left: 78, titleSize: 86, titleWidth: 560, titleWeight: 400, titleBaseline: 262, taglineSize: 27, taglineWidth: 550, taglineBaseline: 349, ruleY: 299, ruleEnd: 620, diagramScale: 0.86 };
   }
   if (direction === "ritual") {
-    return { left: 76, titleSize: 106, titleWidth: 590, titleWeight: 500, titleBaseline: 271, taglineSize: 29, taglineWidth: 570, taglineBaseline: 358, ruleY: 306, ruleBreak: 342, ruleEnd: 630, diagramScale: 0.9 };
+    return { left: 76, titleSize: 106, titleWidth: 590, titleWeight: 500, titleBaseline: 271, taglineSize: 29, taglineWidth: 570, taglineBaseline: 358, ruleY: 306, ruleEnd: 630, diagramScale: 0.9 };
   }
-  return { left: 78, titleSize: 104, titleWidth: 580, titleWeight: 500, titleBaseline: 268, taglineSize: 29, taglineWidth: 565, taglineBaseline: 355, ruleY: 304, ruleBreak: 342, ruleEnd: 625, diagramScale: 0.88 };
+  return { left: 78, titleSize: 104, titleWidth: 580, titleWeight: 500, titleBaseline: 268, taglineSize: 29, taglineWidth: 565, taglineBaseline: 355, ruleY: 304, ruleEnd: 625, diagramScale: 0.88 };
 }
 
 function scaleAround(content: string, x: number, y: number, scale: number): string {
@@ -275,31 +268,17 @@ function scaleAround(content: string, x: number, y: number, scale: number): stri
 }
 
 function atmosphericGeometry(direction: ArtDirection): string {
-  const starOpacity = direction === "architectural" ? 0.08 : direction === "ritual" ? 0.18 : 0.14;
-  const stars = [
-    starRuneSvg(700, 160, 22, starOpacity),
-    starRuneSvg(1160, 160, 22, starOpacity),
-    starRuneSvg(700, 472, 22, starOpacity),
-    starRuneSvg(1160, 472, 22, starOpacity),
-  ].join("");
   if (direction === "architectural") {
-    return `<g opacity=".2"><path d="M666 88H1140M666 157H1140M666 226H1140M666 295H1140M666 364H1140M666 433H1140M720 62V560M790 62V560M860 62V560M930 62V560M1000 62V560M1070 62V560" stroke="${palette.goldDim}" stroke-width=".45"/>${stars}</g>`;
+    return `<g opacity=".2"><path d="M666 88H1140M666 157H1140M666 226H1140M666 295H1140M666 364H1140M666 433H1140M720 62V560M790 62V560M860 62V560M930 62V560M1000 62V560M1070 62V560" stroke="${palette.goldDim}" stroke-width=".45"/></g>`;
   }
   const ritual = direction === "ritual" ? `<g fill="none" stroke="${palette.goldDim}" opacity=".18"><circle cx="930" cy="316" r="259"/><circle cx="930" cy="316" r="238" stroke-dasharray="1 11"/><path d="M747 133L1113 499M1113 133L747 499"/></g>` : "";
-  return `${ritual}${stars}`;
+  return ritual;
 }
 
-function axisStaffSvg(x: number, y: number, direction: -1 | 1): string {
-  return `<g transform="translate(${x} ${y}) scale(1 ${direction})" fill="none" stroke="${palette.goldDim}" stroke-width="1.1" opacity=".38">
-    <path d="M0 0V-48M-12-15L0-27L12-15M-9-34L0-43L9-34M-4-48L0-54L4-48"/>
-    <path d="M-18-7H18M-14-11L-10-7L-14-3M14-11L10-7L14-3"/>
-  </g>`;
-}
-
-function sideRuneSvg(x: number, y: number): string {
-  return `<g transform="translate(${x} ${y})" fill="none" stroke="${palette.goldDim}" stroke-width="1" opacity=".32">
-    <path d="M-18 0H18M0-18V18M-13-13L13 13M13-13L-13 13"/>
-    <path d="M0-12L7 0L0 12L-7 0Z"/>
+function titleStaffSvg(x: number, y: number, rotation: -90 | 90): string {
+  return `<g transform="translate(${x} ${y}) rotate(${rotation})" fill="none" stroke="${palette.gold}" stroke-width="1.25" opacity=".82">
+    <path d="M0 0V-42M-10-9L0-19L10-9M-7-27L0-34L7-27M-3-42L0-46L3-42"/>
+    <path d="M-15-4H15M-11-8L-7-4L-11 0M11-8L7-4L11 0"/>
   </g>`;
 }
 
