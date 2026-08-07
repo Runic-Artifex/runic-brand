@@ -8,7 +8,6 @@ export type Sigil =
   | "artifex"
   | "toolkit"
   | "webui"
-  | "markup"
   | "flow"
   | "assets"
   | "text-resources"
