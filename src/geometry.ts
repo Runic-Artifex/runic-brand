@@ -118,7 +118,7 @@ export function frameSvg(width: number, height: number, direction: ArtDirection 
   return `<g fill="none" stroke="url(#gold)" stroke-width="1.25" opacity="${density}">
     <rect x="${inset}" y="${inset}" width="${width - inset * 2}" height="${height - inset * 2}"/>
     ${corner(inset, inset, 1, 1)}${corner(right, inset, -1, 1)}${corner(inset, bottom, 1, -1)}${corner(right, bottom, -1, -1)}
-    ${midpoint(width / 2, inset)}${midpoint(width / 2, bottom, 180)}${midpoint(inset, height / 2, 90)}${midpoint(right, height / 2, -90)}
+    ${midpoint(width / 2, inset)}${midpoint(width / 2, bottom, 180)}${midpoint(inset, height / 2, -90)}${midpoint(right, height / 2, 90)}
     <path d="M${inset + 12} ${height / 2 - 94}V${height / 2 - 67}M${inset + 12} ${height / 2 + 67}V${height / 2 + 94}M${right - 12} ${height / 2 - 94}V${height / 2 - 67}M${right - 12} ${height / 2 + 67}V${height / 2 + 94}" opacity=".7"/>
   </g>`;
 }
