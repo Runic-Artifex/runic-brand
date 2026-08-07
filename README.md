@@ -16,7 +16,6 @@ not the finished presentation asset. Canonical distributable artwork is PNG.
 - Runic Artifex
 - Runic Toolkit
 - CsWebUi
-- Runic Markup
 - Runic Flow
 - Runic Assets
 - Runic Text Resources
@@ -48,7 +47,7 @@ npm run generate
 
 node dist/cli.js list
 node dist/cli.js render runic-flow --format social --out flow.source.svg
-node dist/cli.js render runic-markup --format icon --png --scale 2 --out markup@2x.png
+node dist/cli.js render runic-flow --format icon --png --scale 2 --out flow@2x.png
 node dist/cli.js render-all --out assets/generated
 ```
 

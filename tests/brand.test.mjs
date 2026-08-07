@@ -13,7 +13,7 @@ import {
 } from "../dist/index.js";
 
 test("defines one stable identity for every Runic Artifex product", () => {
-  assert.equal(identities.length, 9);
+  assert.equal(identities.length, 8);
   assert.equal(new Set(identities.map((identity) => identity.id)).size, identities.length);
   assert.ok(identities.some((identity) => identity.id === "runic-artifex"));
   assert.ok(identities.some((identity) => identity.id === "runic-toolkit"));
