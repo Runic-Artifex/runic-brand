@@ -34,16 +34,6 @@ export const identities = [
     repository: `${github}/cs-webui`,
   },
   {
-    id: "runic-markup",
-    name: "Runic Markup",
-    shortName: "Markup",
-    monogram: "RM",
-    tagline: "Compiled UI languages with explicit host integrations.",
-    accent: "#b78955",
-    sigil: "markup",
-    repository: `${github}/runic-markup`,
-  },
-  {
     id: "runic-flow",
     name: "Runic Flow",
     shortName: "Flow",

@@ -27,10 +27,6 @@ const sigils: Record<Sigil, string> = {
     polyline("-24,31 -24,-13 0,0 24,-13 24,31"),
     line(-34, 18, 34, 18), diamond(0, 0, 6, "sigil-accent"),
   ].join(""),
-  markup: [
-    polyline("-7,-35 -36,0 -7,35"), polyline("7,-35 36,0 7,35"),
-    line(0, -31, 0, 31), diamond(0, 0, 7, "sigil-accent"),
-  ].join(""),
   flow: [
     line(0, -39, 0, 8), polyline("0,8 -27,35"), polyline("0,8 27,35"), line(0, 8, 0, 39),
     diamond(0, -20, 5), diamond(0, 8, 6, "sigil-accent"), diamond(-27, 35, 4), diamond(0, 39, 4), diamond(27, 35, 4),
