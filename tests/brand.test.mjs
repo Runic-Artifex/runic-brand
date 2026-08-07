@@ -32,6 +32,18 @@ test("renders deterministic vector-only typography", () => {
   assert.doesNotMatch(first, /font-family=/);
 });
 
+test("uses a user-space gradient and local accents for sigil strokes", () => {
+  const rendered = renderBrandAsset("runic-flow", "social", { transparent: true });
+  assert.match(
+    rendered,
+    /<linearGradient id="sigil-gold" gradientUnits="userSpaceOnUse"/,
+  );
+  assert.match(rendered, /stroke="url\(#sigil-gold\)"/);
+  assert.doesNotMatch(rendered, /<style>/);
+  assert.doesNotMatch(rendered, /class="sigil-accent"/);
+  assert.match(rendered, /fill="#78956f" stroke="#78956f"/);
+});
+
 test("keeps the overlay transparent for the live shader", () => {
   const overlay = renderBrandAsset("runic-flow", "social", { transparent: true });
   assert.doesNotMatch(overlay, /<rect width="1200" height="630" fill="url\(#ground\)"/);

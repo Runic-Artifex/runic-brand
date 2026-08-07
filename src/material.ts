@@ -30,6 +30,12 @@ export function materialDefinitions(seed: number, direction: ArtDirection = "eng
       <stop offset=".63" stop-color="#9d7d40"/>
       <stop offset="1" stop-color="#e0c27c"/>
     </linearGradient>
+    <linearGradient id="sigil-gold" gradientUnits="userSpaceOnUse" x1="-50" y1="-50" x2="50" y2="50">
+      <stop offset="0" stop-color="#786034"/>
+      <stop offset=".38" stop-color="#d4b36a"/>
+      <stop offset=".63" stop-color="#9d7d40"/>
+      <stop offset="1" stop-color="#e0c27c"/>
+    </linearGradient>
     <pattern id="fibers" width="180" height="36" patternUnits="userSpaceOnUse">
       <path d="M-15 8C28 2 58 14 108 7S168 5 198 11M-20 27C22 21 76 33 126 25S173 24 204 29" fill="none" stroke="#c4ad72" stroke-width=".55" opacity=".12"/>
     </pattern>

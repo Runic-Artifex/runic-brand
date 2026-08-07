@@ -58,11 +58,15 @@ export function sigilSvg(
   x: number,
   y: number,
   size: number,
-  color = "url(#gold)",
+  color = "url(#sigil-gold)",
   accent = palette.rust,
 ): string {
   const scale = size / 100;
-  return `<g transform="translate(${x} ${y}) scale(${scale})" fill="none" stroke="${color}" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter"><style>.sigil-accent{fill:${accent};stroke:${accent}}</style>${sigils[sigil]}</g>`;
+  const geometry = sigils[sigil].replaceAll(
+    'class="sigil-accent"',
+    `fill="${accent}" stroke="${accent}"`,
+  );
+  return `<g transform="translate(${x} ${y}) scale(${scale})" fill="none" stroke="${color}" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter">${geometry}</g>`;
 }
 
 export function medallionSvg(
@@ -95,7 +99,7 @@ export function medallionSvg(
     <circle cx="${x}" cy="${y}" r="${radius - 8}" fill="none" stroke="${palette.goldDim}" stroke-width="1.1" opacity=".9"/>
     <circle cx="${x - radius * 0.25}" cy="${y - radius * 0.32}" r="${radius * 0.52}" fill="none" stroke="#f3d991" stroke-width=".65" opacity=".26"/>
     <g fill="none" stroke="${palette.goldDim}" stroke-width="1.2" opacity=".8">${ticks}</g>
-    ${sigilSvg(sigil, x, y, diameter * 0.58, "url(#gold)", accent)}
+    ${sigilSvg(sigil, x, y, diameter * 0.58, "url(#sigil-gold)", accent)}
   </g>`;
 }
 

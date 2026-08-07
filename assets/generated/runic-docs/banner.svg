@@ -28,6 +28,12 @@
       <stop offset=".63" stop-color="#9d7d40"/>
       <stop offset="1" stop-color="#e0c27c"/>
     </linearGradient>
+    <linearGradient id="sigil-gold" gradientUnits="userSpaceOnUse" x1="-50" y1="-50" x2="50" y2="50">
+      <stop offset="0" stop-color="#786034"/>
+      <stop offset=".38" stop-color="#d4b36a"/>
+      <stop offset=".63" stop-color="#9d7d40"/>
+      <stop offset="1" stop-color="#e0c27c"/>
+    </linearGradient>
     <pattern id="fibers" width="180" height="36" patternUnits="userSpaceOnUse">
       <path d="M-15 8C28 2 58 14 108 7S168 5 198 11M-20 27C22 21 76 33 126 25S173 24 204 29" fill="none" stroke="#c4ad72" stroke-width=".55" opacity=".12"/>
     </pattern>
@@ -98,6 +104,6 @@
     <circle cx="1320" cy="240" r="87" fill="none" stroke="#75633a" stroke-width="1.1" opacity=".9"/>
     <circle cx="1296.25" cy="209.6" r="49.4" fill="none" stroke="#f3d991" stroke-width=".65" opacity=".26"/>
     <g fill="none" stroke="#75633a" stroke-width="1.2" opacity=".8"><path d="M1420 240L1425 240"/><path d="M1320 340L1320 345"/><path d="M1220 240L1215 240"/><path d="M1320 140L1320 135"/></g>
-    <g transform="translate(1320 240) scale(1.1019999999999999)" fill="none" stroke="url(#gold)" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter"><style>.sigil-accent{fill:#c09a52;stroke:#c09a52}</style><polyline points="0,-27 -15,-37 -36,-30 -36,25 -15,20 0,31"/><polyline points="0,-27 15,-37 36,-30 36,25 15,20 0,31"/><path d="M0 -27L0 31"/><path class="sigil-accent" d="M0 -47L5 -42L0 -37L-5 -42Z"/></g>
+    <g transform="translate(1320 240) scale(1.1019999999999999)" fill="none" stroke="url(#sigil-gold)" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter"><polyline points="0,-27 -15,-37 -36,-30 -36,25 -15,20 0,31"/><polyline points="0,-27 15,-37 36,-30 36,25 15,20 0,31"/><path d="M0 -27L0 31"/><path fill="#c09a52" stroke="#c09a52" d="M0 -47L5 -42L0 -37L-5 -42Z"/></g>
   </g>
 </svg>
