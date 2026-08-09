@@ -104,6 +104,6 @@
     <circle cx="1320" cy="240" r="87" fill="none" stroke="#75633a" stroke-width="1.1" opacity=".9"/>
     <circle cx="1296.25" cy="209.6" r="49.4" fill="none" stroke="#f3d991" stroke-width=".65" opacity=".26"/>
     <g fill="none" stroke="#75633a" stroke-width="1.2" opacity=".8"><path d="M1420 240L1425 240"/><path d="M1320 340L1320 345"/><path d="M1220 240L1215 240"/><path d="M1320 140L1320 135"/></g>
-    <g transform="translate(1320 240) scale(1.1019999999999999)" fill="none" stroke="url(#sigil-gold)" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter"><path d="M0 -40L0 40"/><polyline points="0,-27 -26,-16 -35,-26"/><polyline points="0,-8 26,3 35,-7"/><polyline points="0,12 -24,23 -33,14"/><polyline points="0,30 17,38"/><path fill="#8e9360" stroke="#8e9360" d="M0 -13L5 -8L0 -3L-5 -8Z"/></g>
+    <g transform="translate(1320 240) scale(1.1019999999999999)" fill="none" stroke="url(#sigil-gold)" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter"><path d="M-33 -22L-33 25"/><path d="M0 -24L0 27"/><path d="M33 -22L33 25"/><polyline points="-33,-18 -20,-6 -33,6"/><polyline points="-20,-6 -10,-15 0,-9"/><polyline points="0,-9 12,3 21,-12"/><polyline points="33,-18 21,-12 33,0"/><polyline points="-33,9 -20,22 -10,14 0,21"/><polyline points="33,8 20,21"/><polyline points="0,19 12,26"/><path d="M-20 -40L20 -40"/><polyline points="13,-47 20,-40 13,-33"/><path d="M20 40L-20 40"/><polyline points="-13,33 -20,40 -13,47"/><path fill="#8e9360" stroke="#8e9360" d="M0 -14L5 -9L0 -4L-5 -9Z"/></g>
   </g>
 </svg>

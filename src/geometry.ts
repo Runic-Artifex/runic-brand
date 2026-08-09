@@ -37,9 +37,13 @@ const sigils: Record<Sigil, string> = {
     diamond(0, -8, 7, "sigil-accent"),
   ].join(""),
   translations: [
-    line(0, -40, 0, 40), polyline("0,-27 -26,-16 -35,-26"), polyline("0,-8 26,3 35,-7"),
-    polyline("0,12 -24,23 -33,14"), polyline("0,30 17,38"),
-    diamond(0, -8, 5, "sigil-accent"),
+    line(-33, -22, -33, 25), line(0, -24, 0, 27), line(33, -22, 33, 25),
+    polyline("-33,-18 -20,-6 -33,6"), polyline("-20,-6 -10,-15 0,-9"),
+    polyline("0,-9 12,3 21,-12"), polyline("33,-18 21,-12 33,0"),
+    polyline("-33,9 -20,22 -10,14 0,21"), polyline("33,8 20,21"), polyline("0,19 12,26"),
+    line(-20, -40, 20, -40), polyline("13,-47 20,-40 13,-33"),
+    line(20, 40, -20, 40), polyline("-13,33 -20,40 -13,47"),
+    diamond(0, -9, 5, "sigil-accent"),
   ].join(""),
   "translations-editor": [
     polyline("-38,-34 -25,-34 -25,34 -38,34"),
