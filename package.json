@@ -33,6 +33,8 @@
     "check": "tsc --noEmit",
     "build:library": "tsc -p tsconfig.build.json",
     "generate": "npm run build:library && node dist/cli.js render-all",
+    "sync:workspace": "node scripts/sync-workspace-brand.mjs",
+    "check:workspace": "node scripts/sync-workspace-brand.mjs --check",
     "build:studio": "vite build --config studio/vite.config.ts",
     "build": "npm run clean && npm run generate && npm run build:studio",
     "dev": "npm run generate && vite --config studio/vite.config.ts",

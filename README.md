@@ -1,7 +1,9 @@
+![Runic Artifex banner](assets/generated/runic-artifex/banner.png)
+
 # Runic Brand
 
-> **Design status:** private workshop. The rendering foundation is functional,
-> but no asset is approved for adoption by the other Runic Artifex repositories yet.
+> **Design status:** canonical source. Approved assets are deployed to the Runic
+> Artifex organization, product repositories, package metadata, and applications.
 
 Runic Brand is the source and material-rendering system for the Runic Artifex
 product family. Vector paths define typography, sigils, frames, and ornamental
@@ -69,6 +71,21 @@ npm run dev
 The studio shows the canonical material PNG by default. Its optional live mode
 combines the transparent vector masks with a WebGL 2 stone shader for material
 exploration; it is not silently substituted for the deterministic export.
+
+## Deploy in the workspace
+
+The generated PNGs are copied into each sibling repository under
+`.github/assets/brand/`. Product repositories receive their own identity;
+integration-only repositories receive the Runic Artifex family identity, and
+Toolkit examples receive Toolkit artwork.
+
+```bash
+npm run sync:workspace
+npm run check:workspace
+```
+
+The synchronization script never changes README or package metadata. Those
+surfaces remain owned and reviewed by their consuming repository.
 
 ## Verification
 
