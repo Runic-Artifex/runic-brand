@@ -13,11 +13,22 @@ import {
 } from "../dist/index.js";
 
 test("defines one stable identity for every Runic Artifex product", () => {
-  assert.equal(identities.length, 8);
+  assert.equal(identities.length, 9);
   assert.equal(new Set(identities.map((identity) => identity.id)).size, identities.length);
   assert.ok(identities.some((identity) => identity.id === "runic-artifex"));
   assert.ok(identities.some((identity) => identity.id === "runic-toolkit"));
+  assert.ok(identities.some((identity) => identity.id === "runic-translations"));
+  assert.ok(identities.some((identity) => identity.id === "runic-translations-editor"));
+  assert.ok(!identities.some((identity) => identity.id === "runic-text-resources"));
   assert.ok(identities.some((identity) => identity.id === "runic-docs"));
+  assert.equal(
+    identities.find((identity) => identity.id === "runic-translations")?.repository,
+    "https://github.com/Runic-Artifex/runic-translations",
+  );
+  assert.equal(
+    identities.find((identity) => identity.id === "runic-translations-editor")?.repository,
+    "https://github.com/Runic-Artifex/runic-translations-editor",
+  );
 });
 
 test("renders deterministic vector-only typography", () => {

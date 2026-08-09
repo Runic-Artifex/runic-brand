@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="title description">
-  <title id="title">Runic Text Resources icon</title>
+  <title id="title">Runic Translations icon</title>
   <desc id="description">Generated from the Runic Artifex vector brand system.</desc>
   <defs>
     <linearGradient id="ground" x1="0" y1="0" x2="1" y2="1">
@@ -38,12 +38,12 @@
       <path d="M-15 8C28 2 58 14 108 7S168 5 198 11M-20 27C22 21 76 33 126 25S173 24 204 29" fill="none" stroke="#c4ad72" stroke-width=".55" opacity=".12"/>
     </pattern>
     <filter id="patina" x="-12%" y="-12%" width="124%" height="124%">
-      <feTurbulence type="fractalNoise" baseFrequency=".008 .021" numOctaves="4" seed="647" stitchTiles="stitch" result="cloud"/>
+      <feTurbulence type="fractalNoise" baseFrequency=".008 .021" numOctaves="4" seed="791" stitchTiles="stitch" result="cloud"/>
       <feColorMatrix in="cloud" type="matrix" values=".18 0 0 0 .04  0 .22 0 0 .07  0 0 .12 0 .035  0 0 0 0.25 0" result="tinted"/>
       <feBlend in="SourceGraphic" in2="tinted" mode="soft-light"/>
     </filter>
     <filter id="paper-grain" x="-8%" y="-8%" width="116%" height="116%">
-      <feTurbulence type="fractalNoise" baseFrequency=".46" numOctaves="2" seed="666" stitchTiles="stitch" result="noise"/>
+      <feTurbulence type="fractalNoise" baseFrequency=".46" numOctaves="2" seed="810" stitchTiles="stitch" result="noise"/>
       <feColorMatrix in="noise" type="saturate" values="0" result="mono"/>
       <feComponentTransfer in="mono"><feFuncA type="linear" slope=".105"/></feComponentTransfer>
     </filter>

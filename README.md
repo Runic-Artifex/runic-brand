@@ -18,7 +18,8 @@ not the finished presentation asset. Canonical distributable artwork is PNG.
 - CsWebUi
 - Runic Flow
 - Runic Assets
-- Runic Text Resources
+- Runic Translations
+- Runic Translations Editor
 - Runic Command Line
 - Runic Artifex Documentation
 
@@ -56,7 +57,7 @@ The package exposes the same renderer programmatically:
 ```ts
 import { renderBrandAsset } from "@runic-artifex/brand";
 
-const svg = renderBrandAsset("runic-text-resources", "banner");
+const svg = renderBrandAsset("runic-translations", "banner");
 ```
 
 ## Brand Studio

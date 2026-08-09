@@ -10,7 +10,8 @@ export type Sigil =
   | "webui"
   | "flow"
   | "assets"
-  | "text-resources"
+  | "translations"
+  | "translations-editor"
   | "command-line"
   | "documentation";
 
