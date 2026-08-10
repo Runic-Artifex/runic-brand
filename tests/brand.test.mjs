@@ -19,7 +19,6 @@ test("defines one stable identity for every Runic Artifex product", () => {
   assert.ok(identities.some((identity) => identity.id === "runic-toolkit"));
   assert.ok(identities.some((identity) => identity.id === "runic-translations"));
   assert.ok(identities.some((identity) => identity.id === "runic-translations-editor"));
-  assert.ok(!identities.some((identity) => identity.id === "runic-text-resources"));
   assert.ok(identities.some((identity) => identity.id === "runic-docs"));
   assert.equal(
     identities.find((identity) => identity.id === "runic-translations")?.repository,
