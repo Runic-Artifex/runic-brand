@@ -6,6 +6,62 @@ Runic Artifex is a family of independent products joined through explicit
 seams. The visual system expresses that architecture through separate
 medallions, visible connecting lines, and a shared geometric grammar.
 
+## Verbal identity
+
+Use this definition when a page needs to introduce the organization:
+
+> Runic Artifex is a family of open-source .NET tools for desktop and browser
+> UI, application hosting, workflows, assets, localization, and command-line
+> apps. Each product works independently and connects through documented
+> integrations when needed.
+
+### Product hierarchy
+
+Runic Artifex names the organization and the complete product family. Runic
+Toolkit is one product within that family. It brings together application
+hosting, desktop windows, frontend builds, and Application Bridge, but it is not
+an umbrella name for the other products. CsWebUi, Runic Flow, Runic Assets,
+Runic Translations, Runic Translations Editor, and Runic Command Line retain
+their own identities, repositories, and release cycles. Package-based products
+own their package families; Runic Translations Editor owns its desktop
+archives.
+
+Explain the integration model in plain language before using architectural
+shorthand:
+
+> Each tool works on its own. Official integrations connect tools without
+> forcing their cores to depend on each other, so products can keep separate
+> packages and release cycles.
+
+After that explanation, **explicit seams** is the preferred short form.
+Integration-only repositories and packages use the Runic Artifex family
+identity unless a product owns the integration; product-owned integrations keep
+that product's name and identity.
+
+### Voice and structure
+
+Write in a calm, exact, builder-to-builder voice. Start with the outcome a
+developer can achieve, follow with the mechanism that makes it possible, and
+then state the important constraints. Prefer short, concrete sentences and
+active verbs. Technical precision should make the writing easier to trust, not
+harder to read.
+
+| Prefer | Avoid |
+| --- | --- |
+| product family, independent product | suite, monolith, all-in-one framework |
+| official integration, documented integration | magic integration, seamless ecosystem |
+| explicit seam, after explaining it plainly | unexplained architectural shorthand |
+| exact candidate, verified candidate | ready, released, or available without registry evidence |
+| available on NuGet/npm | public when only the source repository is public |
+| preview, current constraint, what it waits for | hype, absolutes, or promises about future dates |
+
+During preview, show exact versions and distinguish source availability,
+verified candidates, and registry publication. Say **Verified candidate · not
+yet published** until the artifact can be fetched from its public registry. Say
+**First preview pending** when no candidate exists, and name NuGet or npm when an
+artifact is available there. Never hide a dependency, release-order constraint,
+compatibility identifier, or publication gate to make a page sound simpler.
+
 ## Authority layers
 
 1. **Tokens** own color, spacing, line weight, and typography choices.

@@ -109,8 +109,9 @@ changing an identity.
 
 ## Publication status
 
-This repository is private during the initial Runic Artifex launch. The npm
-package name is reserved in source but is not authorization to publish it.
+This repository is public. `@runic-artifex/brand` remains a private workspace
+package (`"private": true`) and is not published to npm. The package name in
+source is not a claim of registry availability.
 
 ## License
 
