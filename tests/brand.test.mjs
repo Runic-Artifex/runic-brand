@@ -20,6 +20,7 @@ test("defines one stable identity for every Runic Artifex product", () => {
   assert.ok(identities.some((identity) => identity.id === "runic-translations"));
   assert.ok(identities.some((identity) => identity.id === "runic-translations-editor"));
   assert.ok(identities.some((identity) => identity.id === "runic-docs"));
+  assert.equal(identities.find((identity) => identity.id === "cs-webui")?.name, "CS-WebUI");
   assert.equal(
     identities.find((identity) => identity.id === "runic-translations")?.repository,
     "https://github.com/Runic-Artifex/runic-translations",
@@ -40,6 +41,13 @@ test("renders deterministic vector-only typography", () => {
   assert.doesNotMatch(first, /<path d=""/);
   assert.doesNotMatch(first, /<text\b/);
   assert.doesNotMatch(first, /font-family=/);
+});
+
+test("renders the CS-WebUI display brand without changing its technical identity", () => {
+  const rendered = renderBrandAsset("cs-webui", "social");
+  assert.match(rendered, /<title id="title">CS-WebUI social<\/title>/);
+  assert.match(rendered, /aria-label="CS-WebUI"/);
+  assert.doesNotMatch(rendered, /aria-label="CsWebUi"/);
 });
 
 test("uses a user-space gradient and local accents for sigil strokes", () => {

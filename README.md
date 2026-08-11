@@ -17,7 +17,7 @@ not the finished presentation asset. Canonical distributable artwork is PNG.
 
 - Runic Artifex
 - Runic Toolkit
-- CsWebUi
+- CS-WebUI
 - Runic Flow
 - Runic Assets
 - Runic Translations

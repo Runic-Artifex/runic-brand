@@ -20,7 +20,7 @@ Use this definition when a page needs to introduce the organization:
 Runic Artifex names the organization and the complete product family. Runic
 Toolkit is one product within that family. It brings together application
 hosting, desktop windows, frontend builds, and Application Bridge, but it is not
-an umbrella name for the other products. CsWebUi, Runic Flow, Runic Assets,
+an umbrella name for the other products. CS-WebUI, Runic Flow, Runic Assets,
 Runic Translations, Runic Translations Editor, and Runic Command Line retain
 their own identities, repositories, and release cycles. Package-based products
 own their package families; Runic Translations Editor owns its desktop
