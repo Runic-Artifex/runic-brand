@@ -25,7 +25,7 @@ export const identities = [
   },
   {
     id: "cs-webui",
-    name: "CsWebUi",
+    name: "CS-WebUI",
     shortName: "WebUI",
     monogram: "CW",
     tagline: "A lightweight native host for web-powered .NET UI.",
