@@ -13,12 +13,29 @@ const deployments = [
   ["runic-command-line", "runic-command-line"],
   ["runic-docs", "runic-docs"],
   ["runic-flow", "runic-flow"],
+  ["runic-site", "runic-artifex"],
   ["runic-toolkit", "runic-toolkit"],
   ["runic-toolkit-examples", "runic-toolkit"],
   ["runic-translations", "runic-translations"],
   ["runic-translations-editor", "runic-translations-editor"],
   ["runic-svelte", "runic-artifex"],
   ["runic-vite", "runic-artifex"],
+];
+const siteAssets = [
+  ["runic-artifex", "banner.png", "static/banner.png"],
+  ["runic-artifex", "icon.png", "static/icon.png"],
+  ["runic-artifex", "social.png", "static/og.png"],
+  ["runic-toolkit", "icon.png", "static/products/runic-toolkit.png"],
+  ["cs-webui", "icon.png", "static/products/cs-webui.png"],
+  ["runic-flow", "icon.png", "static/products/runic-flow.png"],
+  ["runic-assets", "icon.png", "static/products/runic-assets.png"],
+  ["runic-translations", "icon.png", "static/products/runic-translations.png"],
+  [
+    "runic-translations-editor",
+    "icon.png",
+    "static/products/runic-translations-editor.png",
+  ],
+  ["runic-command-line", "icon.png", "static/products/runic-command-line.png"],
 ];
 
 const mismatches = [];
@@ -40,6 +57,23 @@ for (const [repository, identity] of deployments) {
     } else {
       await copyFile(source, target);
     }
+  }
+}
+
+for (const [identity, format, targetPath] of siteAssets) {
+  const source = join(brandRoot, "assets", "generated", identity, format);
+  const target = join(workspaceRoot, "runic-site", targetPath);
+  if (!check) await mkdir(dirname(target), { recursive: true });
+
+  if (check) {
+    try {
+      const [expected, deployed] = await Promise.all([readFile(source), readFile(target)]);
+      if (!expected.equals(deployed)) mismatches.push(`runic-site/${targetPath}`);
+    } catch {
+      mismatches.push(`runic-site/${targetPath}`);
+    }
+  } else {
+    await copyFile(source, target);
   }
 }
 

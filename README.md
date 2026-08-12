@@ -87,6 +87,10 @@ npm run check:workspace
 The synchronization script never changes README or package metadata. Those
 surfaces remain owned and reviewed by their consuming repository.
 
+The `runic-site` repository receives the Runic Artifex family identity for the
+apex project website, plus the product icons used by its family overview.
+`runic-docs` keeps the distinct Documentation identity for the technical portal.
+
 ## Verification
 
 ```bash
