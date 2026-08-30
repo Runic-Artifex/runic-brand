@@ -13,6 +13,7 @@ export type Sigil =
   | "translations"
   | "translations-editor"
   | "command-line"
+  | "desktop"
   | "documentation";
 
 export type BrandIdentity = {

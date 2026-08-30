@@ -11,6 +11,7 @@ const deployments = [
   ["cs-webui", "cs-webui"],
   ["runic-assets", "runic-assets"],
   ["runic-command-line", "runic-command-line"],
+  ["runic-desktop", "runic-desktop"],
   ["runic-docs", "runic-docs"],
   ["runic-flow", "runic-flow"],
   ["runic-site", "runic-artifex"],
@@ -21,21 +22,25 @@ const deployments = [
   ["runic-svelte", "runic-artifex"],
   ["runic-vite", "runic-artifex"],
 ];
-const siteAssets = [
-  ["runic-artifex", "banner.png", "static/banner.png"],
-  ["runic-artifex", "icon.png", "static/icon.png"],
-  ["runic-artifex", "social.png", "static/og.png"],
-  ["runic-toolkit", "icon.png", "static/products/runic-toolkit.png"],
-  ["cs-webui", "icon.png", "static/products/cs-webui.png"],
-  ["runic-flow", "icon.png", "static/products/runic-flow.png"],
-  ["runic-assets", "icon.png", "static/products/runic-assets.png"],
-  ["runic-translations", "icon.png", "static/products/runic-translations.png"],
+const webAssets = [
+  ["runic-site", "runic-artifex", "banner.png", "static/banner.png"],
+  ["runic-site", "runic-artifex", "icon.png", "static/icon.png"],
+  ["runic-site", "runic-artifex", "social.png", "static/og.png"],
+  ["runic-site", "runic-toolkit", "icon.png", "static/products/runic-toolkit.png"],
+  ["runic-site", "cs-webui", "icon.png", "static/products/cs-webui.png"],
+  ["runic-site", "runic-flow", "icon.png", "static/products/runic-flow.png"],
+  ["runic-site", "runic-assets", "icon.png", "static/products/runic-assets.png"],
+  ["runic-site", "runic-translations", "icon.png", "static/products/runic-translations.png"],
   [
+    "runic-site",
     "runic-translations-editor",
     "icon.png",
     "static/products/runic-translations-editor.png",
   ],
-  ["runic-command-line", "icon.png", "static/products/runic-command-line.png"],
+  ["runic-site", "runic-command-line", "icon.png", "static/products/runic-command-line.png"],
+  ["runic-site", "runic-desktop", "icon.png", "static/products/runic-desktop.png"],
+  ["runic-docs", "runic-docs", "icon.png", "public/icon.png"],
+  ["runic-docs", "runic-docs", "social.png", "public/og.png"],
 ];
 
 const mismatches = [];
@@ -60,17 +65,17 @@ for (const [repository, identity] of deployments) {
   }
 }
 
-for (const [identity, format, targetPath] of siteAssets) {
+for (const [repository, identity, format, targetPath] of webAssets) {
   const source = join(brandRoot, "assets", "generated", identity, format);
-  const target = join(workspaceRoot, "runic-site", targetPath);
+  const target = join(workspaceRoot, repository, targetPath);
   if (!check) await mkdir(dirname(target), { recursive: true });
 
   if (check) {
     try {
       const [expected, deployed] = await Promise.all([readFile(source), readFile(target)]);
-      if (!expected.equals(deployed)) mismatches.push(`runic-site/${targetPath}`);
+      if (!expected.equals(deployed)) mismatches.push(`${repository}/${targetPath}`);
     } catch {
-      mismatches.push(`runic-site/${targetPath}`);
+      mismatches.push(`${repository}/${targetPath}`);
     }
   } else {
     await copyFile(source, target);

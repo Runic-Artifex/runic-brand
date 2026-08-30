@@ -107,10 +107,10 @@
       <ellipse cx="930" cy="316" rx="145" ry="150" opacity=".26"/>
       <ellipse cx="930" cy="316" rx="220" ry="132" transform="rotate(31 930 316)" opacity=".17"/>
       <ellipse cx="930" cy="316" rx="220" ry="132" transform="rotate(-31 930 316)" opacity=".17"/>
-      <polygon points="930.00,122.00 1092.81,219.00 1092.81,413.00 930.00,510.00 767.19,413.00 767.19,219.00" opacity=".24"/>
+      <polygon points="930.00,122.00 1076.98,195.04 1113.29,359.17 1011.57,490.79 848.43,490.79 746.71,359.17 783.02,195.04" opacity=".24"/>
       <path d="M691 316H1169M930 81V551" stroke-dasharray="2 9" opacity=".28"/>
     </g>
-    <path d="M930 316L930.00 122.00" stroke="#c9a65b" stroke-width="1.35" stroke-dasharray="9 8" opacity=".67"/><path d="M925.00 219.00l5-5 5 5-5 5Z" fill="#0b100d" stroke="#c9a65b" stroke-width="1" opacity=".85"/><path d="M930 316L1092.81 219.00" stroke="#c9a65b" stroke-width="1.35" stroke-dasharray="9 8" opacity=".67"/><path d="M1006.41 267.50l5-5 5 5-5 5Z" fill="#0b100d" stroke="#c9a65b" stroke-width="1" opacity=".85"/><path d="M930 316L1092.81 413.00" stroke="#c9a65b" stroke-width="1.35" stroke-dasharray="9 8" opacity=".67"/><path d="M1006.41 364.50l5-5 5 5-5 5Z" fill="#0b100d" stroke="#c9a65b" stroke-width="1" opacity=".85"/><path d="M930 316L930.00 510.00" stroke="#c9a65b" stroke-width="1.35" stroke-dasharray="9 8" opacity=".67"/><path d="M925.00 413.00l5-5 5 5-5 5Z" fill="#0b100d" stroke="#c9a65b" stroke-width="1" opacity=".85"/><path d="M930 316L767.19 413.00" stroke="#c9a65b" stroke-width="1.35" stroke-dasharray="9 8" opacity=".67"/><path d="M843.59 364.50l5-5 5 5-5 5Z" fill="#0b100d" stroke="#c9a65b" stroke-width="1" opacity=".85"/><path d="M930 316L767.19 219.00" stroke="#c9a65b" stroke-width="1.35" stroke-dasharray="9 8" opacity=".67"/><path d="M843.59 267.50l5-5 5 5-5 5Z" fill="#0b100d" stroke="#c9a65b" stroke-width="1" opacity=".85"/>
+    <path d="M930 316L930.00 122.00" stroke="#c9a65b" stroke-width="1.35" stroke-dasharray="9 8" opacity=".67"/><path d="M925.00 219.00l5-5 5 5-5 5Z" fill="#0b100d" stroke="#c9a65b" stroke-width="1" opacity=".85"/><path d="M930 316L1076.98 195.04" stroke="#c9a65b" stroke-width="1.35" stroke-dasharray="9 8" opacity=".67"/><path d="M998.49 255.52l5-5 5 5-5 5Z" fill="#0b100d" stroke="#c9a65b" stroke-width="1" opacity=".85"/><path d="M930 316L1113.29 359.17" stroke="#c9a65b" stroke-width="1.35" stroke-dasharray="9 8" opacity=".67"/><path d="M1016.64 337.58l5-5 5 5-5 5Z" fill="#0b100d" stroke="#c9a65b" stroke-width="1" opacity=".85"/><path d="M930 316L1011.57 490.79" stroke="#c9a65b" stroke-width="1.35" stroke-dasharray="9 8" opacity=".67"/><path d="M965.79 403.39l5-5 5 5-5 5Z" fill="#0b100d" stroke="#c9a65b" stroke-width="1" opacity=".85"/><path d="M930 316L848.43 490.79" stroke="#c9a65b" stroke-width="1.35" stroke-dasharray="9 8" opacity=".67"/><path d="M884.21 403.39l5-5 5 5-5 5Z" fill="#0b100d" stroke="#c9a65b" stroke-width="1" opacity=".85"/><path d="M930 316L746.71 359.17" stroke="#c9a65b" stroke-width="1.35" stroke-dasharray="9 8" opacity=".67"/><path d="M833.36 337.58l5-5 5 5-5 5Z" fill="#0b100d" stroke="#c9a65b" stroke-width="1" opacity=".85"/><path d="M930 316L783.02 195.04" stroke="#c9a65b" stroke-width="1.35" stroke-dasharray="9 8" opacity=".67"/><path d="M851.51 255.52l5-5 5 5-5 5Z" fill="#0b100d" stroke="#c9a65b" stroke-width="1" opacity=".85"/>
     <g opacity=".72"><g filter="url(#medallion-shadow)">
     <circle cx="930" cy="122" r="38.5" fill="#050806" fill-opacity=".78" stroke="#75633a" stroke-width="1"/>
     <circle cx="930" cy="122" r="33.5" fill="none" stroke="url(#gold)" stroke-width="1.2" opacity=".72"/>
@@ -120,45 +120,53 @@
     <g fill="none" stroke="#75633a" stroke-width="1.2" opacity=".8"><path d="M963.5 122L968.5 122"/><path d="M930 155.5L930 160.5"/><path d="M896.5 122L891.5 122"/><path d="M930 88.5L930 83.5"/></g>
     <g transform="translate(930 122) scale(0.33059999999999995)" fill="none" stroke="url(#sigil-gold)" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter"><path d="M-39 0L39 0"/><path d="M0 -39L0 39"/><path d="M-27 -27L27 27"/><path d="M27 -27L-27 27"/><polyline points="-39,0 -30,-6 -30,6"/><polyline points="39,0 30,-6 30,6"/><polyline points="0,-39 -6,-30 6,-30"/><polyline points="0,39 -6,30 6,30"/><path d="M0 -11L11 0L0 11L-11 0Z"/><path fill="#c9a65b" stroke="#c9a65b" d="M0 -4L4 0L0 4L-4 0Z"/></g>
   </g><g filter="url(#medallion-shadow)">
-    <circle cx="1092.8127759114745" cy="219" r="38.5" fill="#050806" fill-opacity=".78" stroke="#75633a" stroke-width="1"/>
-    <circle cx="1092.8127759114745" cy="219" r="33.5" fill="none" stroke="url(#gold)" stroke-width="1.2" opacity=".72"/>
-    <circle cx="1092.8127759114745" cy="219" r="28.5" fill="url(#medallion)" stroke="url(#gold)" stroke-width="3"/>
-    <circle cx="1092.8127759114745" cy="219" r="20.5" fill="none" stroke="#75633a" stroke-width="1.1" opacity=".9"/>
-    <circle cx="1085.6877759114745" cy="209.88" r="14.82" fill="none" stroke="#f3d991" stroke-width=".65" opacity=".26"/>
-    <g fill="none" stroke="#75633a" stroke-width="1.2" opacity=".8"><path d="M1126.31 219L1131.31 219"/><path d="M1092.81 252.5L1092.81 257.5"/><path d="M1059.31 219L1054.31 219"/><path d="M1092.81 185.5L1092.81 180.5"/></g>
-    <g transform="translate(1092.8127759114745 219) scale(0.33059999999999995)" fill="none" stroke="url(#sigil-gold)" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter"><polyline points="-34,31 -34,-22 -22,-34 0,-22 22,-34 34,-22 34,31"/><polyline points="-24,31 -24,-13 0,0 24,-13 24,31"/><path d="M-34 18L34 18"/><path fill="#b77650" stroke="#b77650" d="M0 -6L6 0L0 6L-6 0Z"/></g>
+    <circle cx="1076.9843187039896" cy="195.04297843940572" r="38.5" fill="#050806" fill-opacity=".78" stroke="#75633a" stroke-width="1"/>
+    <circle cx="1076.9843187039896" cy="195.04297843940572" r="33.5" fill="none" stroke="url(#gold)" stroke-width="1.2" opacity=".72"/>
+    <circle cx="1076.9843187039896" cy="195.04297843940572" r="28.5" fill="url(#medallion)" stroke="url(#gold)" stroke-width="3"/>
+    <circle cx="1076.9843187039896" cy="195.04297843940572" r="20.5" fill="none" stroke="#75633a" stroke-width="1.1" opacity=".9"/>
+    <circle cx="1069.8593187039896" cy="185.9229784394057" r="14.82" fill="none" stroke="#f3d991" stroke-width=".65" opacity=".26"/>
+    <g fill="none" stroke="#75633a" stroke-width="1.2" opacity=".8"><path d="M1110.48 195.04L1115.48 195.04"/><path d="M1076.98 228.54L1076.98 233.54"/><path d="M1043.48 195.04L1038.48 195.04"/><path d="M1076.98 161.54L1076.98 156.54"/></g>
+    <g transform="translate(1076.9843187039896 195.04297843940572) scale(0.33059999999999995)" fill="none" stroke="url(#sigil-gold)" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter"><polyline points="-34,31 -34,-22 -22,-34 0,-22 22,-34 34,-22 34,31"/><polyline points="-24,31 -24,-13 0,0 24,-13 24,31"/><path d="M-34 18L34 18"/><path fill="#b77650" stroke="#b77650" d="M0 -6L6 0L0 6L-6 0Z"/></g>
   </g><g filter="url(#medallion-shadow)">
-    <circle cx="1092.8127759114745" cy="413" r="38.5" fill="#050806" fill-opacity=".78" stroke="#75633a" stroke-width="1"/>
-    <circle cx="1092.8127759114745" cy="413" r="33.5" fill="none" stroke="url(#gold)" stroke-width="1.2" opacity=".72"/>
-    <circle cx="1092.8127759114745" cy="413" r="28.5" fill="url(#medallion)" stroke="url(#gold)" stroke-width="3"/>
-    <circle cx="1092.8127759114745" cy="413" r="20.5" fill="none" stroke="#75633a" stroke-width="1.1" opacity=".9"/>
-    <circle cx="1085.6877759114745" cy="403.88" r="14.82" fill="none" stroke="#f3d991" stroke-width=".65" opacity=".26"/>
-    <g fill="none" stroke="#75633a" stroke-width="1.2" opacity=".8"><path d="M1126.31 413L1131.31 413"/><path d="M1092.81 446.5L1092.81 451.5"/><path d="M1059.31 413L1054.31 413"/><path d="M1092.81 379.5L1092.81 374.5"/></g>
-    <g transform="translate(1092.8127759114745 413) scale(0.33059999999999995)" fill="none" stroke="url(#sigil-gold)" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter"><path d="M0 -39L0 8"/><polyline points="0,8 -27,35"/><polyline points="0,8 27,35"/><path d="M0 8L0 39"/><path d="M0 -25L5 -20L0 -15L-5 -20Z"/><path fill="#78956f" stroke="#78956f" d="M0 2L6 8L0 14L-6 8Z"/><path d="M-27 31L-23 35L-27 39L-31 35Z"/><path d="M0 35L4 39L0 43L-4 39Z"/><path d="M27 31L31 35L27 39L23 35Z"/></g>
+    <circle cx="1113.2864474901828" cy="359.169061187525" r="38.5" fill="#050806" fill-opacity=".78" stroke="#75633a" stroke-width="1"/>
+    <circle cx="1113.2864474901828" cy="359.169061187525" r="33.5" fill="none" stroke="url(#gold)" stroke-width="1.2" opacity=".72"/>
+    <circle cx="1113.2864474901828" cy="359.169061187525" r="28.5" fill="url(#medallion)" stroke="url(#gold)" stroke-width="3"/>
+    <circle cx="1113.2864474901828" cy="359.169061187525" r="20.5" fill="none" stroke="#75633a" stroke-width="1.1" opacity=".9"/>
+    <circle cx="1106.1614474901828" cy="350.049061187525" r="14.82" fill="none" stroke="#f3d991" stroke-width=".65" opacity=".26"/>
+    <g fill="none" stroke="#75633a" stroke-width="1.2" opacity=".8"><path d="M1146.79 359.17L1151.79 359.17"/><path d="M1113.29 392.67L1113.29 397.67"/><path d="M1079.79 359.17L1074.79 359.17"/><path d="M1113.29 325.67L1113.29 320.67"/></g>
+    <g transform="translate(1113.2864474901828 359.169061187525) scale(0.33059999999999995)" fill="none" stroke="url(#sigil-gold)" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter"><path d="M0 -39L0 8"/><polyline points="0,8 -27,35"/><polyline points="0,8 27,35"/><path d="M0 8L0 39"/><path d="M0 -25L5 -20L0 -15L-5 -20Z"/><path fill="#78956f" stroke="#78956f" d="M0 2L6 8L0 14L-6 8Z"/><path d="M-27 31L-23 35L-27 39L-31 35Z"/><path d="M0 35L4 39L0 43L-4 39Z"/><path d="M27 31L31 35L27 39L23 35Z"/></g>
   </g><g filter="url(#medallion-shadow)">
-    <circle cx="930" cy="510" r="38.5" fill="#050806" fill-opacity=".78" stroke="#75633a" stroke-width="1"/>
-    <circle cx="930" cy="510" r="33.5" fill="none" stroke="url(#gold)" stroke-width="1.2" opacity=".72"/>
-    <circle cx="930" cy="510" r="28.5" fill="url(#medallion)" stroke="url(#gold)" stroke-width="3"/>
-    <circle cx="930" cy="510" r="20.5" fill="none" stroke="#75633a" stroke-width="1.1" opacity=".9"/>
-    <circle cx="922.875" cy="500.88" r="14.82" fill="none" stroke="#f3d991" stroke-width=".65" opacity=".26"/>
-    <g fill="none" stroke="#75633a" stroke-width="1.2" opacity=".8"><path d="M963.5 510L968.5 510"/><path d="M930 543.5L930 548.5"/><path d="M896.5 510L891.5 510"/><path d="M930 476.5L930 471.5"/></g>
-    <g transform="translate(930 510) scale(0.33059999999999995)" fill="none" stroke="url(#sigil-gold)" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter"><path d="M0 -38L30 -8L0 22L-30 -8Z"/><polyline points="-30,-8 -30,21 0,39 30,21 30,-8"/><path d="M0 22L0 39"/><path d="M-30 7L0 24"/><path d="M30 7L0 24"/><path fill="#a98755" stroke="#a98755" d="M0 -15L7 -8L0 -1L-7 -8Z"/></g>
+    <circle cx="1011.5701429541009" cy="490.7879603730693" r="38.5" fill="#050806" fill-opacity=".78" stroke="#75633a" stroke-width="1"/>
+    <circle cx="1011.5701429541009" cy="490.7879603730693" r="33.5" fill="none" stroke="url(#gold)" stroke-width="1.2" opacity=".72"/>
+    <circle cx="1011.5701429541009" cy="490.7879603730693" r="28.5" fill="url(#medallion)" stroke="url(#gold)" stroke-width="3"/>
+    <circle cx="1011.5701429541009" cy="490.7879603730693" r="20.5" fill="none" stroke="#75633a" stroke-width="1.1" opacity=".9"/>
+    <circle cx="1004.4451429541009" cy="481.6679603730693" r="14.82" fill="none" stroke="#f3d991" stroke-width=".65" opacity=".26"/>
+    <g fill="none" stroke="#75633a" stroke-width="1.2" opacity=".8"><path d="M1045.07 490.79L1050.07 490.79"/><path d="M1011.57 524.29L1011.57 529.29"/><path d="M978.07 490.79L973.07 490.79"/><path d="M1011.57 457.29L1011.57 452.29"/></g>
+    <g transform="translate(1011.5701429541009 490.7879603730693) scale(0.33059999999999995)" fill="none" stroke="url(#sigil-gold)" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter"><path d="M0 -38L30 -8L0 22L-30 -8Z"/><polyline points="-30,-8 -30,21 0,39 30,21 30,-8"/><path d="M0 22L0 39"/><path d="M-30 7L0 24"/><path d="M30 7L0 24"/><path fill="#a98755" stroke="#a98755" d="M0 -15L7 -8L0 -1L-7 -8Z"/></g>
   </g><g filter="url(#medallion-shadow)">
-    <circle cx="767.1872240885256" cy="413.00000000000006" r="38.5" fill="#050806" fill-opacity=".78" stroke="#75633a" stroke-width="1"/>
-    <circle cx="767.1872240885256" cy="413.00000000000006" r="33.5" fill="none" stroke="url(#gold)" stroke-width="1.2" opacity=".72"/>
-    <circle cx="767.1872240885256" cy="413.00000000000006" r="28.5" fill="url(#medallion)" stroke="url(#gold)" stroke-width="3"/>
-    <circle cx="767.1872240885256" cy="413.00000000000006" r="20.5" fill="none" stroke="#75633a" stroke-width="1.1" opacity=".9"/>
-    <circle cx="760.0622240885256" cy="403.88000000000005" r="14.82" fill="none" stroke="#f3d991" stroke-width=".65" opacity=".26"/>
-    <g fill="none" stroke="#75633a" stroke-width="1.2" opacity=".8"><path d="M800.69 413L805.69 413"/><path d="M767.19 446.5L767.19 451.5"/><path d="M733.69 413L728.69 413"/><path d="M767.19 379.5L767.19 374.5"/></g>
-    <g transform="translate(767.1872240885256 413.00000000000006) scale(0.33059999999999995)" fill="none" stroke="url(#sigil-gold)" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter"><polyline points="-38,-34 -25,-34 -25,34 -38,34"/><polyline points="38,-34 25,-34 25,34 38,34"/><path d="M-14 -20L14 -20"/><path d="M-14 0L10 0"/><path d="M-14 20L6 20"/><polyline points="8,10 22,24 12,30"/><path fill="#b08a58" stroke="#b08a58" d="M10 -5L15 0L10 5L5 0Z"/></g>
+    <circle cx="848.4298570458991" cy="490.7879603730693" r="38.5" fill="#050806" fill-opacity=".78" stroke="#75633a" stroke-width="1"/>
+    <circle cx="848.4298570458991" cy="490.7879603730693" r="33.5" fill="none" stroke="url(#gold)" stroke-width="1.2" opacity=".72"/>
+    <circle cx="848.4298570458991" cy="490.7879603730693" r="28.5" fill="url(#medallion)" stroke="url(#gold)" stroke-width="3"/>
+    <circle cx="848.4298570458991" cy="490.7879603730693" r="20.5" fill="none" stroke="#75633a" stroke-width="1.1" opacity=".9"/>
+    <circle cx="841.3048570458991" cy="481.6679603730693" r="14.82" fill="none" stroke="#f3d991" stroke-width=".65" opacity=".26"/>
+    <g fill="none" stroke="#75633a" stroke-width="1.2" opacity=".8"><path d="M881.93 490.79L886.93 490.79"/><path d="M848.43 524.29L848.43 529.29"/><path d="M814.93 490.79L809.93 490.79"/><path d="M848.43 457.29L848.43 452.29"/></g>
+    <g transform="translate(848.4298570458991 490.7879603730693) scale(0.33059999999999995)" fill="none" stroke="url(#sigil-gold)" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter"><polyline points="-38,-34 -25,-34 -25,34 -38,34"/><polyline points="38,-34 25,-34 25,34 38,34"/><path d="M-14 -20L14 -20"/><path d="M-14 0L10 0"/><path d="M-14 20L6 20"/><polyline points="8,10 22,24 12,30"/><path fill="#b08a58" stroke="#b08a58" d="M10 -5L15 0L10 5L5 0Z"/></g>
   </g><g filter="url(#medallion-shadow)">
-    <circle cx="767.1872240885256" cy="218.99999999999997" r="38.5" fill="#050806" fill-opacity=".78" stroke="#75633a" stroke-width="1"/>
-    <circle cx="767.1872240885256" cy="218.99999999999997" r="33.5" fill="none" stroke="url(#gold)" stroke-width="1.2" opacity=".72"/>
-    <circle cx="767.1872240885256" cy="218.99999999999997" r="28.5" fill="url(#medallion)" stroke="url(#gold)" stroke-width="3"/>
-    <circle cx="767.1872240885256" cy="218.99999999999997" r="20.5" fill="none" stroke="#75633a" stroke-width="1.1" opacity=".9"/>
-    <circle cx="760.0622240885256" cy="209.87999999999997" r="14.82" fill="none" stroke="#f3d991" stroke-width=".65" opacity=".26"/>
-    <g fill="none" stroke="#75633a" stroke-width="1.2" opacity=".8"><path d="M800.69 219L805.69 219"/><path d="M767.19 252.5L767.19 257.5"/><path d="M733.69 219L728.69 219"/><path d="M767.19 185.5L767.19 180.5"/></g>
-    <g transform="translate(767.1872240885256 218.99999999999997) scale(0.33059999999999995)" fill="none" stroke="url(#sigil-gold)" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter"><polyline points="-34,-31 -5,0 -34,31"/><path d="M-5 0L33 0"/><polyline points="15,-16 33,0 15,16"/><path d="M-16 32L33 32"/><path fill="#9a7657" stroke="#9a7657" d="M-5 -5L0 0L-5 5L-10 0Z"/></g>
+    <circle cx="746.7135525098172" cy="359.169061187525" r="38.5" fill="#050806" fill-opacity=".78" stroke="#75633a" stroke-width="1"/>
+    <circle cx="746.7135525098172" cy="359.169061187525" r="33.5" fill="none" stroke="url(#gold)" stroke-width="1.2" opacity=".72"/>
+    <circle cx="746.7135525098172" cy="359.169061187525" r="28.5" fill="url(#medallion)" stroke="url(#gold)" stroke-width="3"/>
+    <circle cx="746.7135525098172" cy="359.169061187525" r="20.5" fill="none" stroke="#75633a" stroke-width="1.1" opacity=".9"/>
+    <circle cx="739.5885525098172" cy="350.049061187525" r="14.82" fill="none" stroke="#f3d991" stroke-width=".65" opacity=".26"/>
+    <g fill="none" stroke="#75633a" stroke-width="1.2" opacity=".8"><path d="M780.21 359.17L785.21 359.17"/><path d="M746.71 392.67L746.71 397.67"/><path d="M713.21 359.17L708.21 359.17"/><path d="M746.71 325.67L746.71 320.67"/></g>
+    <g transform="translate(746.7135525098172 359.169061187525) scale(0.33059999999999995)" fill="none" stroke="url(#sigil-gold)" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter"><polyline points="-34,-31 -5,0 -34,31"/><path d="M-5 0L33 0"/><polyline points="15,-16 33,0 15,16"/><path d="M-16 32L33 32"/><path fill="#9a7657" stroke="#9a7657" d="M-5 -5L0 0L-5 5L-10 0Z"/></g>
+  </g><g filter="url(#medallion-shadow)">
+    <circle cx="783.0156812960104" cy="195.04297843940572" r="38.5" fill="#050806" fill-opacity=".78" stroke="#75633a" stroke-width="1"/>
+    <circle cx="783.0156812960104" cy="195.04297843940572" r="33.5" fill="none" stroke="url(#gold)" stroke-width="1.2" opacity=".72"/>
+    <circle cx="783.0156812960104" cy="195.04297843940572" r="28.5" fill="url(#medallion)" stroke="url(#gold)" stroke-width="3"/>
+    <circle cx="783.0156812960104" cy="195.04297843940572" r="20.5" fill="none" stroke="#75633a" stroke-width="1.1" opacity=".9"/>
+    <circle cx="775.8906812960104" cy="185.9229784394057" r="14.82" fill="none" stroke="#f3d991" stroke-width=".65" opacity=".26"/>
+    <g fill="none" stroke="#75633a" stroke-width="1.2" opacity=".8"><path d="M816.52 195.04L821.52 195.04"/><path d="M783.02 228.54L783.02 233.54"/><path d="M749.52 195.04L744.52 195.04"/><path d="M783.02 161.54L783.02 156.54"/></g>
+    <g transform="translate(783.0156812960104 195.04297843940572) scale(0.33059999999999995)" fill="none" stroke="url(#sigil-gold)" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter"><polyline points="-36,-31 36,-31 36,20 0,39 -36,20 -36,-31"/><polyline points="-24,-18 24,-18 24,11 0,25 -24,11 -24,-18"/><path d="M0 25L0 39"/><path d="M-18 39L18 39"/><path fill="#7f8f75" stroke="#7f8f75" d="M0 -8L6 -2L0 4L-6 -2Z"/></g>
   </g></g>
     <g filter="url(#medallion-shadow)">
     <circle cx="930" cy="316" r="98" fill="#050806" fill-opacity=".78" stroke="#75633a" stroke-width="1"/>

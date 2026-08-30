@@ -3,6 +3,7 @@ import { readFile } from "node:fs/promises";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
 import sharp from "sharp";
+import { validateSvgDocument } from "../scripts/svg-security.mjs";
 import {
   dimensions,
   fragmentShader,
@@ -13,13 +14,14 @@ import {
 } from "../dist/index.js";
 
 test("defines one stable identity for every Runic Artifex product", () => {
-  assert.equal(identities.length, 9);
+  assert.equal(identities.length, 10);
   assert.equal(new Set(identities.map((identity) => identity.id)).size, identities.length);
   assert.ok(identities.some((identity) => identity.id === "runic-artifex"));
   assert.ok(identities.some((identity) => identity.id === "runic-toolkit"));
   assert.ok(identities.some((identity) => identity.id === "runic-translations"));
   assert.ok(identities.some((identity) => identity.id === "runic-translations-editor"));
   assert.ok(identities.some((identity) => identity.id === "runic-docs"));
+  assert.equal(identities.find((identity) => identity.id === "runic-desktop")?.name, "Runic Desktop");
   assert.equal(identities.find((identity) => identity.id === "cs-webui")?.name, "CS-WebUI");
   assert.equal(
     identities.find((identity) => identity.id === "runic-translations")?.repository,
@@ -108,4 +110,19 @@ test("ships WebGL 2 shader sources with the required uniforms", () => {
   assert.match(fragmentShader, /uniform float u_seed;/);
   assert.match(fragmentShader, /uniform vec3 u_accent;/);
   assert.match(fragmentShader, /float fbm\(vec2 p\)/);
+});
+
+test("rejects SVG payloads that Chrome could execute or fetch", async () => {
+  const fixtures = [
+    "namespaced-script.svg",
+    "event-handler.svg",
+    "escaped-javascript-url.svg",
+    "external-href.svg",
+    "dtd-entity.svg",
+    "style-import.svg",
+  ];
+  for (const fixture of fixtures) {
+    const payload = await readFile(new URL(`./fixtures/unsafe-svg/${fixture}`, import.meta.url), "utf8");
+    assert.notEqual(validateSvgDocument(payload, fixture).length, 0, fixture);
+  }
 });
