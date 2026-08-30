@@ -84,6 +84,16 @@ export const identities = [
     repository: `${github}/runic-command-line`,
   },
   {
+    id: "runic-desktop",
+    name: "Runic Desktop",
+    shortName: "Desktop",
+    monogram: "RD",
+    tagline: "Native presentation hosting for web-powered applications.",
+    accent: "#7f8f75",
+    sigil: "desktop",
+    repository: `${github}/runic-desktop`,
+  },
+  {
     id: "runic-docs",
     name: "Runic Artifex Documentation",
     shortName: "Documentation",

@@ -57,6 +57,12 @@ const sigils: Record<Sigil, string> = {
     polyline("15,-16 33,0 15,16"), line(-16, 32, 33, 32),
     diamond(-5, 0, 5, "sigil-accent"),
   ].join(""),
+  desktop: [
+    polyline("-36,-31 36,-31 36,20 0,39 -36,20 -36,-31"),
+    polyline("-24,-18 24,-18 24,11 0,25 -24,11 -24,-18"),
+    line(0, 25, 0, 39), line(-18, 39, 18, 39),
+    diamond(0, -2, 6, "sigil-accent"),
+  ].join(""),
   documentation: [
     polyline("0,-27 -15,-37 -36,-30 -36,25 -15,20 0,31"),
     polyline("0,-27 15,-37 36,-30 36,25 15,20 0,31"),

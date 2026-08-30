@@ -1,0 +1,290 @@
+{
+  "schemaVersion": 1,
+  "license": "MIT",
+  "source": {
+    "kind": "canonical-brand-artwork",
+    "reference": "https://github.com/Runic-Artifex/runic-brand"
+  },
+  "assets": {
+    "cs-webui/banner.png": {
+      "profile": "banner.png",
+      "sha256": "3c49da7bce190fa1c9f115059a00b77bfcf00741bc032838c91a750b7ef5b994"
+    },
+    "cs-webui/banner.svg": {
+      "profile": "banner.svg",
+      "sha256": "2faa538ecd83e36e361ce42070e48c3ccd49d4743382bbeaf1737dbfac973736"
+    },
+    "cs-webui/icon.png": {
+      "profile": "icon.png",
+      "sha256": "c7dad832c6624a7d1a3868fffea9835a3d7151ab26c4d047a427d4f07f42b834"
+    },
+    "cs-webui/icon.svg": {
+      "profile": "icon.svg",
+      "sha256": "51ac5adda23853134651a4ddaf0a849a5d669947e2b06e29957adc8159165529"
+    },
+    "cs-webui/social-overlay.svg": {
+      "profile": "social-overlay.svg",
+      "sha256": "0b623f4ebaa0556d46692e51b8ddd8e0d9389811e2dcf08beb392da8174c9772"
+    },
+    "cs-webui/social.png": {
+      "profile": "social.png",
+      "sha256": "1f880d30f53a136f5a06053f7fa75da727746be7d4fe4aeffb468cc7f931de86"
+    },
+    "cs-webui/social.svg": {
+      "profile": "social.svg",
+      "sha256": "f0c29a84aeb2fd5aa4c126c90f059e5ad751d421e33a362cdf2e2c9239227963"
+    },
+    "runic-artifex/banner.png": {
+      "profile": "banner.png",
+      "sha256": "31abed66f205d32156190df15cba20ecc16073a6c3675e4091cdf98d0f3695fa"
+    },
+    "runic-artifex/banner.svg": {
+      "profile": "banner.svg",
+      "sha256": "e07ba5ac7039a8550f3ee300653d9aee904a7d51eca24b5093d0a296320924bf"
+    },
+    "runic-artifex/icon.png": {
+      "profile": "icon.png",
+      "sha256": "67f77238ecb3bb6d55edab04eab747763ec7112f1e61d13974d3b19eeac057ab"
+    },
+    "runic-artifex/icon.svg": {
+      "profile": "icon.svg",
+      "sha256": "91594af05f9019318cc94eace0f1a77ec3df2a24f47898c4ee777b7e7935b3a7"
+    },
+    "runic-artifex/social-overlay.svg": {
+      "profile": "social-overlay.svg",
+      "sha256": "40e20df62eee5aae5442f03f67208527d5ef5ae9d713625d6cae6c3654907482"
+    },
+    "runic-artifex/social.png": {
+      "profile": "social.png",
+      "sha256": "756f0e1f5e15b72f795902f3a790e3c4afde765d1884948d146beec818218630"
+    },
+    "runic-artifex/social.svg": {
+      "profile": "social.svg",
+      "sha256": "7e37efa208b8500e59cf6d6c0fc72a52256cbffad9fc8f6fe6fadbb95a535613"
+    },
+    "runic-assets/banner.png": {
+      "profile": "banner.png",
+      "sha256": "af201db8ca8be4be2d2528e35345451a55612f7a37696f67b7325a8deca253a4"
+    },
+    "runic-assets/banner.svg": {
+      "profile": "banner.svg",
+      "sha256": "566985585384d1263e1d3c794325b665e6d1925b4654ab25ff7d53f4fe2cdafc"
+    },
+    "runic-assets/icon.png": {
+      "profile": "icon.png",
+      "sha256": "6a5cf30792d3047a89c185c8e9a0eae0cbebdf44196247681deadad3953147dc"
+    },
+    "runic-assets/icon.svg": {
+      "profile": "icon.svg",
+      "sha256": "5c76190f8049d7123315a1051791804aa28157deead5008bd6c68fef1a847491"
+    },
+    "runic-assets/social-overlay.svg": {
+      "profile": "social-overlay.svg",
+      "sha256": "3a51bbc69b2e83de15fc3e908d1fe86f623273b5f040fc53a84e2ce2cce23f77"
+    },
+    "runic-assets/social.png": {
+      "profile": "social.png",
+      "sha256": "dd478d4d12e8713e887a79f8591a4c844f8c58937b8729fb4b134684f82f10b0"
+    },
+    "runic-assets/social.svg": {
+      "profile": "social.svg",
+      "sha256": "8e9252ea9aa6a2b4bf8e03954abc861f2e27a7efadb56a774740d1524c859be3"
+    },
+    "runic-command-line/banner.png": {
+      "profile": "banner.png",
+      "sha256": "8fe51f1e8cdd96fb1440563db9fefcdf4fb3362c08e3e962806619e55214de23"
+    },
+    "runic-command-line/banner.svg": {
+      "profile": "banner.svg",
+      "sha256": "e6a4b280eb83362e256cc8df52998e0ee7ecf46befef209222d4d09a9ab1c06d"
+    },
+    "runic-command-line/icon.png": {
+      "profile": "icon.png",
+      "sha256": "9b1a35ffea8f9b4581529bbadb3a4c33cb0e8584b3b88263bc44e13a1192170d"
+    },
+    "runic-command-line/icon.svg": {
+      "profile": "icon.svg",
+      "sha256": "f805bc969538b974218b3dd577d7b16ac8c30598ca0a87ea55b5b57c71bc1b77"
+    },
+    "runic-command-line/social-overlay.svg": {
+      "profile": "social-overlay.svg",
+      "sha256": "039f86a609aed612b3260aa3d547900d479a03eba4520c7cac5da9f48dcc80e2"
+    },
+    "runic-command-line/social.png": {
+      "profile": "social.png",
+      "sha256": "ece84611904f4edd688710da3be36f7ac5d081a3909770ca02349afc10036b58"
+    },
+    "runic-command-line/social.svg": {
+      "profile": "social.svg",
+      "sha256": "cb2edbc4acc561d0cf135fca440d580ae7f22c534dded4feb979d0a56c977928"
+    },
+    "runic-desktop/banner.png": {
+      "profile": "banner.png",
+      "sha256": "5b62f63e04d28a34be0b3cf785ebe621650f38170007000c354718616523c542"
+    },
+    "runic-desktop/banner.svg": {
+      "profile": "banner.svg",
+      "sha256": "2c52855df9d8af722b2b14d9247116a134349bc2a445d50911918f84b5f7ddc2"
+    },
+    "runic-desktop/icon.png": {
+      "profile": "icon.png",
+      "sha256": "1cccc082129099100cddbeb93b740378cc563d4ac5c97ff512d71655d000c3f0"
+    },
+    "runic-desktop/icon.svg": {
+      "profile": "icon.svg",
+      "sha256": "5ebe975cbf83eb266138fc6d351895a2606012fa46ce649856fdf29771e19c22"
+    },
+    "runic-desktop/social-overlay.svg": {
+      "profile": "social-overlay.svg",
+      "sha256": "9063f6c131fcbda5925ae86c5dd317e87f6e29861d86e6367e9a1d815b43aa5b"
+    },
+    "runic-desktop/social.png": {
+      "profile": "social.png",
+      "sha256": "482d0f16fd23d9e93f380b697921ebf6c0846983b8b7645a632bc3fdae8e691b"
+    },
+    "runic-desktop/social.svg": {
+      "profile": "social.svg",
+      "sha256": "3fc027e6d828208905175e8f2288f6d835f0cd710a62969901189cac1d6d796e"
+    },
+    "runic-docs/banner.png": {
+      "profile": "banner.png",
+      "sha256": "1d738d25cb36ce33b18148cfa8124d7cf76ce43df7008ea8ec9de1754e2c794c"
+    },
+    "runic-docs/banner.svg": {
+      "profile": "banner.svg",
+      "sha256": "281db7f8c55af0d57526b5daf7c5c87556cce93771f0a08b94198a98c94f8e6b"
+    },
+    "runic-docs/icon.png": {
+      "profile": "icon.png",
+      "sha256": "36e97f493e5ead2a1c2c7f720686f42aae7d4fb486a01642f3a9b688b25bcf89"
+    },
+    "runic-docs/icon.svg": {
+      "profile": "icon.svg",
+      "sha256": "06bb69f76f2eba9dca431e79fa80f34978b5c2539a1fbc8e460a266277d13c2e"
+    },
+    "runic-docs/social-overlay.svg": {
+      "profile": "social-overlay.svg",
+      "sha256": "d81a6e536f530315d155c20a8ab742d63eb4553760b562c2555c5fd348e213e4"
+    },
+    "runic-docs/social.png": {
+      "profile": "social.png",
+      "sha256": "a7660993605a550abf60c1f95f7bc0502cb0215ec0fab12e8bc7c6f866897c92"
+    },
+    "runic-docs/social.svg": {
+      "profile": "social.svg",
+      "sha256": "0e9fdd659eee67ff5b28d809754cfab5734806b9e7e01297078eb3523999e035"
+    },
+    "runic-flow/banner.png": {
+      "profile": "banner.png",
+      "sha256": "0126d2dda5691307051357835966da56856887c2fc6919c863a71ac1cdd05d58"
+    },
+    "runic-flow/banner.svg": {
+      "profile": "banner.svg",
+      "sha256": "36997a514950d77abf420cf94ad06269050492a3c7ca59675d1a248db75fbf33"
+    },
+    "runic-flow/icon.png": {
+      "profile": "icon.png",
+      "sha256": "95628326571dc03721ecd7d272fd89b5ac770cabc9fbb9765e0d4db3377441e2"
+    },
+    "runic-flow/icon.svg": {
+      "profile": "icon.svg",
+      "sha256": "999986050a12b8cd7449694a241ef2d71f8149c4214bb68dc2cdd030c7b45bb3"
+    },
+    "runic-flow/social-overlay.svg": {
+      "profile": "social-overlay.svg",
+      "sha256": "92f81b61bdb3b50255b3e4eda32e287a1f798abc4270c88a1589f6aea296484d"
+    },
+    "runic-flow/social.png": {
+      "profile": "social.png",
+      "sha256": "920c8680a5833c262e558e48194bc64eff661608a4e09d24c45774253b53e1f7"
+    },
+    "runic-flow/social.svg": {
+      "profile": "social.svg",
+      "sha256": "9ceb79aa5647dd41e3a8570df49529d8da7a80164599d28313812a67885f555d"
+    },
+    "runic-toolkit/banner.png": {
+      "profile": "banner.png",
+      "sha256": "7662d8fa458382cba2e87a4f88a0d132434bb954f4f15aa417a95d1f610f3c1f"
+    },
+    "runic-toolkit/banner.svg": {
+      "profile": "banner.svg",
+      "sha256": "49dfb5e460bbf11aa436d29f8db611ef86ca942714f3817676c8a7655be72922"
+    },
+    "runic-toolkit/icon.png": {
+      "profile": "icon.png",
+      "sha256": "49ff5cbace5523dd21d22effa0bdd7bb393328673571ece254c522b317639ebd"
+    },
+    "runic-toolkit/icon.svg": {
+      "profile": "icon.svg",
+      "sha256": "76b372cf28a272fa4a3a6c73dae18ce23077ff72d40769a2feb3b12c9435567d"
+    },
+    "runic-toolkit/social-overlay.svg": {
+      "profile": "social-overlay.svg",
+      "sha256": "3b8b0e1376c724393fa5dc3c1c88fe03a54b292d8660eebb224681e67761b8b3"
+    },
+    "runic-toolkit/social.png": {
+      "profile": "social.png",
+      "sha256": "63e172fc1a500e13a937fc9e4494e6dc0ee0a7e8b2742e7c62190c9e9167fd35"
+    },
+    "runic-toolkit/social.svg": {
+      "profile": "social.svg",
+      "sha256": "2d854e3f033a665daf839e1ce0c91f93dea01fabd461dd26a2a98ae56645fa24"
+    },
+    "runic-translations/banner.png": {
+      "profile": "banner.png",
+      "sha256": "4153df35080d8717570e4c2997dde7780076358d74b650c33be5993079019bae"
+    },
+    "runic-translations/banner.svg": {
+      "profile": "banner.svg",
+      "sha256": "198c568e37ec240a8d36c64e84d93bae53c1726c7b8028f44843b20dbcedf3be"
+    },
+    "runic-translations/icon.png": {
+      "profile": "icon.png",
+      "sha256": "d839fd8e5e3a304615a68673fd1d0746d2ea4daa146d81dcb7af1522d75e0313"
+    },
+    "runic-translations/icon.svg": {
+      "profile": "icon.svg",
+      "sha256": "a60ac586972b3a59e007de904da17a1d149a9002352a531368a9c88b65f78ba0"
+    },
+    "runic-translations/social-overlay.svg": {
+      "profile": "social-overlay.svg",
+      "sha256": "d7465e6f58183f97b9ef609005858eb89101d7b914389407fd06ecea7e7b252e"
+    },
+    "runic-translations/social.png": {
+      "profile": "social.png",
+      "sha256": "397565b2eed0709cbbeaacd75c43383bd391f0e644747b6d3ff515428a1463c2"
+    },
+    "runic-translations/social.svg": {
+      "profile": "social.svg",
+      "sha256": "0cedfed1d13cea71209b12dd2628eead04e2559a6c08b2ca58d1ec905f69c4a7"
+    },
+    "runic-translations-editor/banner.png": {
+      "profile": "banner.png",
+      "sha256": "30c4d0d67b622581bd501765d533a4ac9c29f7940421b32dd3eefadaa011299f"
+    },
+    "runic-translations-editor/banner.svg": {
+      "profile": "banner.svg",
+      "sha256": "0a660b25c4987dd5d9fea6a8fd0dc5ff8d96eb855a322c798c9cc447b7b36078"
+    },
+    "runic-translations-editor/icon.png": {
+      "profile": "icon.png",
+      "sha256": "5805fb211663303146694d818bc17004bd2ddd25082cbe80c3c5046ec934acbb"
+    },
+    "runic-translations-editor/icon.svg": {
+      "profile": "icon.svg",
+      "sha256": "076a35642d0c443fa9b3ba5aa7ebe5b54992616a33f04f46eb897afac7324aa5"
+    },
+    "runic-translations-editor/social-overlay.svg": {
+      "profile": "social-overlay.svg",
+      "sha256": "911ea49f01c10482dcaed1855d73b5233a6f0c9ebbf6a782589b98c144aad709"
+    },
+    "runic-translations-editor/social.png": {
+      "profile": "social.png",
+      "sha256": "b3a2732cba7315f6706f35060c6f48551fd3da87faf53bc3f6ecb4eac273725c"
+    },
+    "runic-translations-editor/social.svg": {
+      "profile": "social.svg",
+      "sha256": "3d61b6944e54ce3fdfc7f89b4e4aef7d582b9bb56e57a1abd1f36525d851232c"
+    }
+  }
+}

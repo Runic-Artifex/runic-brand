@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "identities": [
+    "cs-webui",
+    "runic-artifex",
+    "runic-assets",
+    "runic-command-line",
+    "runic-desktop",
+    "runic-docs",
+    "runic-flow",
+    "runic-toolkit",
+    "runic-translations",
+    "runic-translations-editor"
+  ],
+  "profiles": {
+    "banner.png": { "mediaType": "image/png", "width": 1600, "height": 480 },
+    "banner.svg": { "mediaType": "image/svg+xml", "width": 1600, "height": 480 },
+    "icon.png": { "mediaType": "image/png", "width": 512, "height": 512 },
+    "icon.svg": { "mediaType": "image/svg+xml", "width": 512, "height": 512 },
+    "social-overlay.svg": { "mediaType": "image/svg+xml", "width": 1200, "height": 630 },
+    "social.png": { "mediaType": "image/png", "width": 1200, "height": 630 },
+    "social.svg": { "mediaType": "image/svg+xml", "width": 1200, "height": 630 }
+  }
+}
