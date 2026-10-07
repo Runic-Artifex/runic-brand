@@ -74,15 +74,29 @@ exploration; it is not silently substituted for the deterministic export.
 
 ## Deploy in the workspace
 
-The generated PNGs are copied into each sibling repository under
-`.github/assets/brand/`. Product repositories receive their own identity;
-integration-only repositories receive the Runic Artifex family identity, and
-Toolkit examples receive Toolkit artwork.
+The generated PNGs are copied into the sibling checkouts of the current
+Runic-Artifex repositories. Standalone repositories (`.github`, `cs-webui`,
+`runic-flow`, `runic-site`) receive them under `.github/assets/brand/`. The SDK
+workspaces keep one directory per product identity:
+
+- `runic-sdk/eng/branding/{application,assets,desktop}` receive the Toolkit,
+  Assets and Desktop identities; `eng/branding/svelte` receives the Runic
+  Artifex family identity.
+- `runic-cli-sdk/eng/branding/command-line` receives the Command Line identity.
+- `runic-translations-sdk/eng/branding/translations` receives the Translations
+  identity; `apps/translations-editor/.github/assets/brand` and its
+  `Frontend/static/brand/icon.png` receive the Translations Editor identity.
 
 ```bash
 npm run sync:workspace
 npm run check:workspace
+# from a worktree, or when the checkouts live elsewhere:
+npm run check:workspace -- --workspace=/path/to/RunicArtifex
 ```
+
+The workspace defaults to the parent directory of this checkout and can also be
+set with `RUNIC_WORKSPACE_ROOT`. The check fails when a repository checkout is
+missing instead of silently skipping it.
 
 The synchronization script never changes README or package metadata. Those
 surfaces remain owned and reviewed by their consuming repository.
@@ -90,7 +104,7 @@ surfaces remain owned and reviewed by their consuming repository.
 The `runic-site` repository receives the Runic Artifex family identity for the
 apex project website, plus the product icons used by its family overview. Its
 `docs/` portal (formerly the separate `runic-docs` repository) keeps the
-distinct Documentation identity in `docs/public/icon.png` and
+distinct Documentation identity in `docs/.github/assets/brand/`, `docs/public/icon.png` and
 `docs/public/og.png`, and receives the same product icons under
 `docs/public/products/`.
 
