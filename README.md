@@ -88,8 +88,11 @@ The synchronization script never changes README or package metadata. Those
 surfaces remain owned and reviewed by their consuming repository.
 
 The `runic-site` repository receives the Runic Artifex family identity for the
-apex project website, plus the product icons used by its family overview.
-`runic-docs` keeps the distinct Documentation identity for the technical portal.
+apex project website, plus the product icons used by its family overview. Its
+`docs/` portal (formerly the separate `runic-docs` repository) keeps the
+distinct Documentation identity in `docs/public/icon.png` and
+`docs/public/og.png`, and receives the same product icons under
+`docs/public/products/`.
 
 ## Verification
 

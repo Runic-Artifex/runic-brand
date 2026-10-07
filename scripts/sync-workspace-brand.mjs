@@ -12,7 +12,6 @@ const deployments = [
   ["runic-assets", "runic-assets"],
   ["runic-command-line", "runic-command-line"],
   ["runic-desktop", "runic-desktop"],
-  ["runic-docs", "runic-docs"],
   ["runic-flow", "runic-flow"],
   ["runic-site", "runic-artifex"],
   ["runic-toolkit", "runic-toolkit"],
@@ -39,8 +38,21 @@ const webAssets = [
   ],
   ["runic-site", "runic-command-line", "icon.png", "static/products/runic-command-line.png"],
   ["runic-site", "runic-desktop", "icon.png", "static/products/runic-desktop.png"],
-  ["runic-docs", "runic-docs", "icon.png", "public/icon.png"],
-  ["runic-docs", "runic-docs", "social.png", "public/og.png"],
+  ["runic-site", "runic-docs", "icon.png", "docs/public/icon.png"],
+  ["runic-site", "runic-docs", "social.png", "docs/public/og.png"],
+  ["runic-site", "runic-toolkit", "icon.png", "docs/public/products/runic-application.png"],
+  ["runic-site", "cs-webui", "icon.png", "docs/public/products/cs-webui.png"],
+  ["runic-site", "runic-flow", "icon.png", "docs/public/products/runic-flow.png"],
+  ["runic-site", "runic-assets", "icon.png", "docs/public/products/runic-assets.png"],
+  ["runic-site", "runic-translations", "icon.png", "docs/public/products/runic-translations.png"],
+  [
+    "runic-site",
+    "runic-translations-editor",
+    "icon.png",
+    "docs/public/products/runic-translations-editor.png",
+  ],
+  ["runic-site", "runic-command-line", "icon.png", "docs/public/products/runic-command-line.png"],
+  ["runic-site", "runic-desktop", "icon.png", "docs/public/products/runic-desktop.png"],
 ];
 
 const mismatches = [];
