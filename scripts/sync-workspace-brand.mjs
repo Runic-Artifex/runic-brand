@@ -26,7 +26,7 @@ const webAssets = [
   ["runic-site", "runic-artifex", "banner.png", "static/banner.png"],
   ["runic-site", "runic-artifex", "icon.png", "static/icon.png"],
   ["runic-site", "runic-artifex", "social.png", "static/og.png"],
-  ["runic-site", "runic-toolkit", "icon.png", "static/products/runic-toolkit.png"],
+  ["runic-site", "runic-toolkit", "icon.png", "static/products/runic-application.png"],
   ["runic-site", "cs-webui", "icon.png", "static/products/cs-webui.png"],
   ["runic-site", "runic-flow", "icon.png", "static/products/runic-flow.png"],
   ["runic-site", "runic-assets", "icon.png", "static/products/runic-assets.png"],
