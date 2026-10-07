@@ -21,7 +21,7 @@ export const identities = [
     tagline: "One application model across .NET surfaces.",
     accent: "#c9a65b",
     sigil: "toolkit",
-    repository: `${github}/runic-toolkit`,
+    repository: `${github}/runic-sdk`,
   },
   {
     id: "cs-webui",
@@ -51,7 +51,7 @@ export const identities = [
     tagline: "Portable static assets across hosts and frameworks.",
     accent: "#a98755",
     sigil: "assets",
-    repository: `${github}/runic-assets`,
+    repository: `${github}/runic-sdk`,
   },
   {
     id: "runic-translations",
@@ -61,7 +61,7 @@ export const identities = [
     tagline: "Deterministic localization across languages.",
     accent: "#8e9360",
     sigil: "translations",
-    repository: `${github}/runic-translations`,
+    repository: `${github}/runic-translations-sdk`,
   },
   {
     id: "runic-translations-editor",
@@ -71,7 +71,7 @@ export const identities = [
     tagline: "Translate naturally. Ship deterministic resources.",
     accent: "#b08a58",
     sigil: "translations-editor",
-    repository: `${github}/runic-translations-editor`,
+    repository: `${github}/runic-translations-sdk/tree/main/apps/translations-editor`,
   },
   {
     id: "runic-command-line",
@@ -81,7 +81,7 @@ export const identities = [
     tagline: "Reflection-free command applications for NativeAOT.",
     accent: "#9a7657",
     sigil: "command-line",
-    repository: `${github}/runic-command-line`,
+    repository: `${github}/runic-cli-sdk`,
   },
   {
     id: "runic-desktop",
@@ -91,7 +91,7 @@ export const identities = [
     tagline: "Native presentation hosting for web-powered applications.",
     accent: "#7f8f75",
     sigil: "desktop",
-    repository: `${github}/runic-desktop`,
+    repository: `${github}/runic-sdk`,
   },
   {
     id: "runic-docs",
@@ -101,7 +101,7 @@ export const identities = [
     tagline: "The map of independent tools and explicit seams.",
     accent: "#c09a52",
     sigil: "documentation",
-    repository: `${github}/runic-docs`,
+    repository: `${github}/runic-site/tree/main/docs`,
   },
 ] as const satisfies readonly BrandIdentity[];
 

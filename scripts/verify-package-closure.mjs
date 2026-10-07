@@ -2,6 +2,7 @@ import { execFileSync } from "node:child_process";
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { readSinglePackResult } from "./npm-pack-result.mjs";
 
 const root = fileURLToPath(new URL("..", import.meta.url));
 const [inventory, matrix] = await Promise.all([
@@ -14,7 +15,7 @@ const expectedAssets = new Set([
   "assets/visual-goldens.json",
   ...matrix.identities.flatMap((identity) => Object.keys(matrix.profiles).map((profile) => `assets/generated/${identity}/${profile}`)),
 ]);
-const pack = JSON.parse(execFileSync("npm", ["pack", "--dry-run", "--json", "--ignore-scripts"], { cwd: root, encoding: "utf8", stdio: ["ignore", "pipe", "inherit"] }))[0];
+const pack = readSinglePackResult(JSON.parse(execFileSync("npm", ["pack", "--dry-run", "--json", "--ignore-scripts"], { cwd: root, encoding: "utf8", stdio: ["ignore", "pipe", "inherit"] })));
 const packedAssets = new Set(pack.files.map(({ path }) => path).filter((path) => path.startsWith("assets/")));
 const missing = [...expectedAssets].filter((path) => !packedAssets.has(path));
 const extra = [...packedAssets].filter((path) => !expectedAssets.has(path));
