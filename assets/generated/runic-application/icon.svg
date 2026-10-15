@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="title description">
+<title id="title">Runic Application icon</title>
+<desc id="description">Typed Windows, Views and navigation between .NET ViewModels and your frontend.</desc>
+<rect width="512" height="512" fill="#1c2023"/>
+<g transform="translate(104 104) scale(3.04)"><path fill="#e4704f" d="M17.248 24.435L73.248 84.435L82.752 75.565L26.752 15.565ZM26.752 84.435L82.752 24.435L73.248 15.565L17.248 75.565Z"/><path fill="#e6e7e1" d="M15.5 6L15.5 94L28.5 94L28.5 6ZM71.5 6L71.5 94L84.5 94L84.5 6Z"/></g>
+</svg>

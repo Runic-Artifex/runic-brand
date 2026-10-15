@@ -1,7 +1,7 @@
 {
   "name": "@runic-artifex/brand",
   "version": "0.1.0-preview.1",
-  "description": "Deterministic engraved stone and gold brand assets for the Runic Artifex product family.",
+  "description": "Deterministic vector brand assets, marks and design tokens for the Runic Artifex product family.",
   "private": true,
   "type": "module",
   "license": "MIT",
@@ -15,10 +15,6 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
-    },
-    "./shader": {
-      "types": "./dist/shader.d.ts",
-      "import": "./dist/shader.js"
     }
   },
   "files": [
@@ -36,20 +32,18 @@
     "check": "tsc --noEmit",
     "build:library": "tsc -p tsconfig.build.json",
     "generate": "npm run build:library && node dist/cli.js render-all",
+    "update:manifests": "npm run generate && node scripts/update-asset-manifests.mjs",
     "verify:assets": "node scripts/verify-brand-assets.mjs",
     "verify:package-closure": "node scripts/verify-package-closure.mjs",
     "verify:release-assets": "npm run verify:assets && npm run verify:package-closure",
     "export:release-assets": "node scripts/verify-brand-assets.mjs --quiet && node scripts/export-release-assets.mjs",
     "sync:workspace": "node scripts/sync-workspace-brand.mjs",
     "check:workspace": "node scripts/sync-workspace-brand.mjs --check",
-    "build:studio": "vite build --config studio/vite.config.ts",
-    "build": "npm run clean && npm run generate && npm run build:studio",
-    "dev": "npm run generate && vite --config studio/vite.config.ts",
+    "build": "npm run clean && npm run generate",
     "test": "npm run build && npm run verify:assets && npm run verify:package-closure && node --test tests/*.test.mjs"
   },
   "dependencies": {
-    "@fontsource-variable/geist": "5.3.0",
-    "@fontsource/cormorant": "5.3.0",
+    "@fontsource/schibsted-grotesk": "5.2.8",
     "fontkit": "2.0.4",
     "sharp": "0.35.5"
   },
@@ -57,8 +51,6 @@
     "@types/fontkit": "2.0.9",
     "@types/node": "26.1.2",
     "saxes": "6.0.0",
-    "tsx": "4.23.8",
-    "typescript": "7.0.2",
-    "vite": "8.2.0"
+    "typescript": "7.0.2"
   }
 }

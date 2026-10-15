@@ -11,8 +11,21 @@ const [packageJson, inventoryText, matrix] = await Promise.all([
 ]);
 const inventory = JSON.parse(inventoryText);
 
+function describe(logicalPath, asset) {
+  if (asset.profile === "web") {
+    return { logicalPath, sha256: asset.sha256, mediaType: matrix.web[logicalPath].mediaType };
+  }
+  const profile = matrix.profiles[asset.profile];
+  return {
+    logicalPath,
+    sha256: asset.sha256,
+    mediaType: profile.mediaType,
+    dimensions: { width: profile.width, height: profile.height },
+  };
+}
+
 console.log(JSON.stringify({
-  schemaVersion: 1,
+  schemaVersion: 2,
   package: {
     name: packageJson.name,
     version: packageJson.version,
@@ -22,13 +35,5 @@ console.log(JSON.stringify({
     logicalPath: "assets/asset-inventory.json",
     sha256: createHash("sha256").update(inventoryText).digest("hex"),
   },
-  assets: Object.entries(inventory.assets).map(([logicalPath, asset]) => ({
-    logicalPath,
-    sha256: asset.sha256,
-    mediaType: matrix.profiles[asset.profile].mediaType,
-    dimensions: {
-      width: matrix.profiles[asset.profile].width,
-      height: matrix.profiles[asset.profile].height,
-    },
-  })),
+  assets: Object.entries(inventory.assets).map(([logicalPath, asset]) => describe(logicalPath, asset)),
 }, null, 2));

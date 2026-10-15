@@ -1,45 +1,58 @@
-export const formats = ["social", "banner", "icon"] as const;
+export const formats = ["social", "banner", "icon", "presentation"] as const;
 export type BrandFormat = (typeof formats)[number];
 
-export const artDirections = ["engraved", "architectural", "ritual"] as const;
-export type ArtDirection = (typeof artDirections)[number];
+export const glyphs = [
+  "runic",
+  "application",
+  "desktop",
+  "assets",
+  "translations",
+  "command-line",
+  "webui",
+  "flow",
+] as const;
+export type Glyph = (typeof glyphs)[number];
 
-export type Sigil =
-  | "artifex"
-  | "toolkit"
-  | "webui"
-  | "flow"
-  | "assets"
-  | "translations"
-  | "translations-editor"
-  | "command-line"
-  | "desktop"
-  | "documentation";
+/**
+ * What an identity names. Packages and related projects get a basalt app tile;
+ * an application, something people run, gets a stone tile.
+ */
+export type IdentityKind = "family" | "documentation" | "product" | "application" | "related";
 
 export type BrandIdentity = {
   id: string;
   name: string;
   shortName: string;
-  monogram: string;
   tagline: string;
-  accent: string;
-  sigil: Sigil;
+  kind: IdentityKind;
+  glyph: Glyph;
+  /** Where the identity's source lives. */
   repository: string;
+  /** NuGet package IDs that carry this identity's icon. A trailing `*` matches a prefix. */
+  packages: readonly string[];
+};
+
+export type Scheme = {
+  stone: string;
+  raised: string;
+  sunk: string;
+  ink: string;
+  inkSoft: string;
+  groove: string;
+  paint: string;
 };
 
 export type BrandPalette = {
-  ink: string;
-  moss: string;
-  mossLight: string;
-  parchment: string;
-  gold: string;
-  goldDim: string;
-  rust: string;
+  light: Scheme;
+  dark: Scheme;
 };
 
-export type RenderOptions = {
-  direction?: ArtDirection;
-  material?: boolean;
-  transparent?: boolean;
-  seed?: number;
+/** Filled outlines, split by the two colours of the stave grammar. */
+export type MarkPaths = {
+  width: number;
+  height: number;
+  /** Staves: the carved, vertical strokes. */
+  ink: string;
+  /** Twigs: the painted, diagonal strokes. */
+  paint: string;
 };

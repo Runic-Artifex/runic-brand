@@ -3,31 +3,43 @@
 # Runic Brand
 
 > **Design status:** canonical source. Approved assets are deployed to the Runic
-> Artifex organization, product repositories, package metadata, and applications.
+> Artifex organization, product repositories, websites, and applications.
 
-Runic Brand is the source and material-rendering system for the Runic Artifex
-product family. Vector paths define typography, sigils, frames, and ornamental
-construction. A deterministic raster stage turns those masks into the canonical
-stone, engraved metal, patina, and relief artwork used on public surfaces.
+Runic Brand is the source of the Runic Artifex visual identity: the stave
+grammar behind the RUNIC wordmark and the product glyphs, the colour and type
+tokens, and a deterministic renderer that turns them into brand assets.
 
-The vector layer remains inspectable and portable, but it is construction source,
-not the finished presentation asset. Canonical distributable artwork is PNG.
+Everything is vector. Marks are filled outlines made of carved staves (ink) and
+painted twigs (paint); text is converted to paths from Schibsted Grotesk, so no
+asset depends on installed fonts. PNG files are rasterized from the same SVG
+with a pinned version of `sharp`.
 
-## Included identities
+## Identities
 
-- Runic Artifex
-- Runic Toolkit
-- CS-WebUI
-- Runic Flow
-- Runic Assets
-- Runic Translations
-- Runic Translations Editor
-- Runic Command Line
-- Runic Artifex Documentation
+| ID | Kind | Glyph | NuGet packages that carry its icon |
+| --- | --- | --- | --- |
+| `runic-artifex` | family | `runic` | |
+| `runic-docs` | documentation | `runic` | |
+| `runic-application` | product | `application` | `Runic.Application.Views*`, `Runic.Application.Testing`, `Runic.Application.Templates`, `Runic.Navigation*`, `Runic.Create`, `dotnet-runic` |
+| `runic-desktop` | product | `desktop` | `Runic.Desktop*`, `Runic.Platform*` |
+| `runic-assets` | product | `assets` | `Runic.Assets*` |
+| `runic-translations` | product | `translations` | `Runic.Translations*`, `dotnet-runic-translations` |
+| `runic-translations-editor` | application | `translations` | |
+| `runic-command-line` | product | `command-line` | `Runic.CommandLine*` |
+| `cs-webui` | related | `webui` | `CsWebUi*` |
 
-Each identity has a distinct geometric sigil, accent, tagline, and repository
-reference while sharing the same palette, typography, frame grammar, medallions,
-and material model.
+`src/identities.ts` is authoritative; `node dist/cli.js list` prints it, and
+`identityForPackage()` answers which icon a package ID should carry. The
+products follow the documentation portal: Application owns Views, Navigation,
+templates and tools; Desktop owns the native hosts and platform services;
+Assets owns asset packaging. An application, something people run, gets its
+icon on a stone tile; packages and projects get a basalt tile.
+
+Retired names have no identity. Runic Toolkit is gone, and Runic Flow keeps only
+its glyph for its archive page. The package IDs renamed in 0.7.0-preview.7
+(`Runic.Application`, `Runic.Application.CsWebUi`, `Runic.Application.Desktop`,
+`Runic.Application.Wpf`, `Runic.Application.ReactiveUI`,
+`Runic.Application.ReactiveUI.Reactive`) get no further releases or icons.
 
 ## Generated formats
 
@@ -36,11 +48,27 @@ and material model.
 | `social` | 1200 × 630 | GitHub, social previews, release announcements |
 | `banner` | 1600 × 480 | README and documentation headers |
 | `icon` | 512 × 512 | Repository, package, application, and profile icons |
+| `presentation` | 1600 × 900 | Text-safe 16:9 covers and closing slides |
 
-Each format includes an SVG construction source and a materialized PNG. The
-`social-overlay.svg` file contains only vector masks for the optional live WebGL
-material study. Do not substitute the SVG source for the canonical PNG on a
-public brand surface.
+Each identity is written to `assets/generated/<identity>/<format>.svg` and
+`<format>.png`. Both files show the same artwork; use the PNG where a surface
+does not accept SVG.
+
+## Web exports
+
+`assets/generated/web/` holds the assets websites and applications build on:
+
+| File | Content |
+| --- | --- |
+| `favicon.svg` | The Runic glyph on a dark tile |
+| `marks/<identity>.svg`, `marks/<identity>-dark.svg` | Each identity's glyph for light and dark backgrounds |
+| `marks/wordmark.svg`, `marks/wordmark-dark.svg` | The RUNIC wordmark |
+| `marks.json` | Wordmark and glyph outlines as `ink` and `paint` path data, for inline SVG |
+| `tokens.css` | The palette as `--rune-*` custom properties for light and dark schemes, plus font stacks |
+
+`tokens.css` follows `prefers-color-scheme` and can be forced with
+`data-scheme="light"` or `data-scheme="dark"` on the root element. Websites
+load their own fonts.
 
 ## Use the CLI
 
@@ -49,81 +77,96 @@ npm ci
 npm run generate
 
 node dist/cli.js list
-node dist/cli.js render runic-flow --format social --out flow.source.svg
-node dist/cli.js render runic-flow --format icon --png --scale 2 --out flow@2x.png
+node dist/cli.js render runic-translations --format banner --out translations-banner.svg
+node dist/cli.js render runic-translations --format icon --png --scale 2 --out translations-icon@2x.png
 node dist/cli.js render-all --out assets/generated
 ```
 
-The package exposes the same renderer programmatically:
+The package exposes the same functions programmatically:
 
 ```ts
-import { renderBrandAsset } from "@runic-artifex/brand";
+import { markData, renderBrandAsset, tokensCss } from "@runic-artifex/brand";
 
 const svg = renderBrandAsset("runic-translations", "banner");
 ```
 
-## Brand Studio
+## Change the brand
+
+After changing anything in `src/`, regenerate the assets and their manifests
+and commit both:
 
 ```bash
-npm run dev
+npm run update:manifests
 ```
 
-The studio shows the canonical material PNG by default. Its optional live mode
-combines the transparent vector masks with a WebGL 2 stone shader for material
-exploration; it is not silently substituted for the deterministic export.
+This renders every identity and web export, then rewrites
+`assets/brand-asset-matrix.json` (identities, profiles, and web files),
+`assets/asset-inventory.json` (SHA-256 of every generated file), and
+`assets/visual-goldens.json` (pixel digests under the pinned `sharp`).
 
 ## Deploy in the workspace
 
-The generated PNGs are copied into the sibling checkouts of the current
-Runic-Artifex repositories. Standalone repositories (`.github`, `cs-webui`,
-`runic-flow`, `runic-site`) receive them under `.github/assets/brand/`. The SDK
-workspaces keep one directory per product identity:
+`scripts/sync-workspace-brand.mjs` copies generated files into sibling
+repositories of this checkout, to the places those repositories read them:
 
-- `runic-sdk/eng/branding/{application,assets,desktop}` receive the Toolkit,
-  Assets and Desktop identities; `eng/branding/svelte` receives the Runic
-  Artifex family identity.
-- `runic-cli-sdk/eng/branding/command-line` receives the Command Line identity.
-- `runic-translations-sdk/eng/branding/translations` receives the Translations
-  identity; `apps/translations-editor/.github/assets/brand` and its
-  `Frontend/static/brand/icon.png` receive the Translations Editor identity.
+| Repository | Target | Identity | Read by |
+| --- | --- | --- | --- |
+| `.github` | `.github/assets/brand/` | Runic Artifex | Organization profile README |
+| `runic-site` | `.github/assets/brand/` | Runic Artifex | README banner |
+| `cs-webui` | `.github/assets/brand/` | CS-WebUI | README banner, NuGet icon |
+| `runic-sdk` | `eng/branding/application/` | Runic Application | NuGet icons through `eng/build/application.props` |
+| `runic-sdk` | `eng/branding/desktop/` | Runic Desktop | Nix example application icon |
+| `runic-sdk` | `eng/branding/assets/` | Runic Assets | NuGet icons through `eng/build/assets.props` |
+| `runic-cli-sdk` | `eng/branding/command-line/` | Runic Command Line | NuGet icons through `eng/build/command-line.props` |
+| `runic-translations-sdk` | `eng/branding/translations/` | Runic Translations | NuGet icons through `eng/build/translations.props` |
+| `runic-translations-sdk` | `apps/translations-editor/.github/assets/brand/` | Runic Translations Editor | Editor README banner |
+| `runic-translations-sdk` | `apps/translations-editor/Frontend/static/brand/icon.png` | Runic Translations Editor | Editor window and sidebar |
+| `runic-site` | `static/og.png`, `static/icon.png`, `static/favicon.svg`, `static/brand/marks/`, `src/lib/brand/marks.json`, `src/lib/brand/tokens.css` | Runic Artifex | Website |
+| `runic-site` | `docs/public/og.png`, `docs/public/icon.png`, `docs/public/favicon.svg`, `docs/public/brand/marks/`, `docs/src/lib/brand/` | Runic Documentation | Documentation portal |
+
+Each `eng/branding/` and `.github/assets/brand/` target receives `banner.png`,
+`icon.png` and `social.png`. The `brand/marks/` directories mirror `web/marks/`,
+so marks that are no longer generated are removed. The workspace is the parent
+of this checkout unless `--workspace=<directory>` or `RUNIC_WORKSPACE_ROOT` says
+otherwise; a missing repository checkout is an error, so a run against the
+wrong directory fails instead of silently doing nothing.
 
 ```bash
 npm run sync:workspace
 npm run check:workspace
-# from a worktree, or when the checkouts live elsewhere:
-npm run check:workspace -- --workspace=/path/to/RunicArtifex
+node scripts/sync-workspace-brand.mjs --check --repository runic-sdk
 ```
 
-The workspace defaults to the parent directory of this checkout and can also be
-set with `RUNIC_WORKSPACE_ROOT`. The check fails when a repository checkout is
-missing instead of silently skipping it.
-
-The synchronization script never changes README or package metadata. Those
-surfaces remain owned and reviewed by their consuming repository.
-
-The `runic-site` repository receives the Runic Artifex family identity for the
-apex project website, plus the product icons used by its family overview. Its
-`docs/` portal (formerly the separate `runic-docs` repository) keeps the
-distinct Documentation identity in `docs/.github/assets/brand/`, `docs/public/icon.png` and
-`docs/public/og.png`, and receives the same product icons under
-`docs/public/products/`.
+`--check` compares without writing and exits non-zero on any difference.
+`--repository` limits either mode to the named targets and can be repeated.
+The script never changes README, project or package metadata; those surfaces
+remain owned and reviewed by their consuming repository.
 
 ## Verification
 
 ```bash
-npm audit
+npm audit --audit-level=high
 npm run check
 npm test
 ```
 
-Tests prove that:
+`npm test` rebuilds the library, regenerates every asset, and then verifies:
 
-- every identity and format renders deterministically;
-- typography contains vector paths rather than runtime font references;
-- transparent overlays contain no material background;
-- committed vector sources exactly match the renderer;
-- PNG dimensions match the canonical format; and
-- the CPU materializer and WebGL study retain deterministic contracts.
+- the asset matrix matches the identities, formats, and web exports of the
+  library, and the inventory is closed: every generated file is listed with its
+  SHA-256 and nothing else is present;
+- every PNG and SVG has its format's dimensions and matches its pixel golden;
+- every SVG passes the security check: no scripts, event handlers, styles,
+  external or data references, and bounded size and complexity;
+- `marks.json` holds the wordmark and every glyph as path data, and
+  `tokens.css` defines the palette without imports or URLs;
+- the npm package contains exactly the generated assets and manifests; and
+- the tests prove that rendering is deterministic, text is converted to paths,
+  committed SVG and web files match a fresh render, and rasterized PNGs have the
+  canonical dimensions.
+
+CI also fails when the regenerated SVG or web files differ from the committed
+ones.
 
 See [docs/BRAND_GUIDELINES.md](docs/BRAND_GUIDELINES.md) before adding or
 changing an identity.
