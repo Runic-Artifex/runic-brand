@@ -1,296 +1,187 @@
-import { fitVectorText, vectorText } from "./fonts.js";
-import { frameSvg, medallionSvg, sigilSvg } from "./geometry.js";
-import { getIdentity, identities } from "./identities.js";
-import { materialBackground, materialDefinitions } from "./material.js";
-import type { ArtDirection, BrandFormat, BrandIdentity, RenderOptions } from "./model.js";
+import { escapeXml, measureVectorText, vectorText, wrapVectorText, type Weight } from "./fonts.js";
+import { glyph, markGroup, wordmark } from "./geometry.js";
+import { getIdentity } from "./identities.js";
+import type { BrandFormat, BrandIdentity } from "./model.js";
 import { palette } from "./tokens.js";
 
 export const dimensions: Record<BrandFormat, { width: number; height: number }> = {
   social: { width: 1200, height: 630 },
   banner: { width: 1600, height: 480 },
   icon: { width: 512, height: 512 },
+  presentation: { width: 1600, height: 900 },
 };
 
-export function renderBrandAsset(
-  identityId: string,
-  format: BrandFormat,
-  options: RenderOptions = {},
-): string {
-  const identity = getIdentity(identityId);
-  const seed = options.seed ?? identitySeed(identity.id);
-  switch (format) {
-    case "social":
-      return renderSocial(identity, { ...options, seed });
-    case "banner":
-      return renderBanner(identity, { ...options, seed });
-    case "icon":
-      return renderIcon(identity, { ...options, seed });
-  }
-}
+/**
+ * Every wide format shares one composition: words on stone, the identity's
+ * glyph on basalt, and the boundary between them as the seam.
+ */
+type Layout = {
+  seam: number;
+  inset: number;
+  glyphSize: number;
+  lockupCap: number;
+  wordmarkCap: number;
+  titleSize: number;
+  taglineSize: number;
+  footerSize: number;
+  textWidth: number;
+};
 
-function root(
-  identity: BrandIdentity,
-  format: BrandFormat,
-  content: string,
-  seed: number,
-  direction: ArtDirection,
-): string {
+const layouts: Record<Exclude<BrandFormat, "icon">, Layout> = {
+  social: {
+    seam: 744,
+    inset: 64,
+    glyphSize: 272,
+    lockupCap: 26,
+    wordmarkCap: 92,
+    titleSize: 72,
+    taglineSize: 36,
+    footerSize: 22,
+    textWidth: 600,
+  },
+  banner: {
+    seam: 1136,
+    inset: 80,
+    glyphSize: 248,
+    lockupCap: 24,
+    wordmarkCap: 84,
+    titleSize: 68,
+    taglineSize: 32,
+    footerSize: 20,
+    textWidth: 960,
+  },
+  presentation: {
+    seam: 1056,
+    inset: 96,
+    glyphSize: 380,
+    lockupCap: 32,
+    wordmarkCap: 132,
+    titleSize: 104,
+    taglineSize: 46,
+    footerSize: 26,
+    textWidth: 820,
+  },
+};
+
+const light = palette.light;
+const dark = palette.dark;
+
+export function renderBrandAsset(identityId: string, format: BrandFormat): string {
+  const identity = getIdentity(identityId);
   const { width, height } = dimensions[format];
-  const title = `${identity.name} ${format}`;
-  const normalizedContent = content
-    .split("\n")
-    .filter((line) => line.trim().length > 0)
-    .join("\n");
+  const content = format === "icon" ? renderIcon(identity) : renderWide(identity, layouts[format], width, height);
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" role="img" aria-labelledby="title description">
-  <title id="title">${escapeXml(title)}</title>
-  <desc id="description">Generated from the Runic Artifex vector brand system.</desc>
-  ${materialDefinitions(seed, direction)}
-${normalizedContent}
+<title id="title">${escapeXml(`${identity.name} ${format}`)}</title>
+<desc id="description">${escapeXml(identity.tagline)}</desc>
+${content}
 </svg>
 `;
 }
 
-function backdrop(
-  width: number,
-  height: number,
-  seed: number,
-  options: RenderOptions,
-): string {
-  if (options.transparent) return "";
-  if (options.material === false) {
-    return `<rect width="${width}" height="${height}" fill="${palette.ink}"/>`;
+function renderIcon(identity: BrandIdentity): string {
+  const size = 512;
+  const mark = 304;
+  const offset = (size - mark) / 2;
+  // An application people run sits on stone; packages and projects on basalt.
+  const scheme = identity.kind === "application" ? light : dark;
+  const ground = identity.kind === "application" ? light.raised : dark.raised;
+  return [
+    `<rect width="${size}" height="${size}" fill="${ground}"/>`,
+    markGroup(glyph(identity.glyph), scheme, { x: offset, y: offset, scale: mark / 100 }),
+  ].join("\n");
+}
+
+function renderWide(identity: BrandIdentity, layout: Layout, width: number, height: number): string {
+  const parts: string[] = [
+    `<rect width="${width}" height="${height}" fill="${light.stone}"/>`,
+    `<rect x="${layout.seam}" width="${width - layout.seam}" height="${height}" fill="${dark.raised}"/>`,
+  ];
+
+  const panel = width - layout.seam;
+  const glyphX = layout.seam + (panel - layout.glyphSize) / 2;
+  const glyphY = (height - layout.glyphSize) / 2;
+  parts.push(markGroup(glyph(identity.glyph), dark, { x: glyphX, y: glyphY, scale: layout.glyphSize / 100 }));
+
+  const family = identity.kind === "family";
+  const footer = identity.repository.replace(/^https:\/\//, "");
+  const footerBaseline = height - layout.inset;
+  const lines = wrapVectorText(identity.tagline, layout.taglineSize, layout.textWidth, 400);
+  const taglineLeading = layout.taglineSize * 1.24;
+  const taglineGap = layout.taglineSize * (family ? 2.2 : 1.45);
+  const taglineHeight = taglineGap + (lines.length - 1) * taglineLeading;
+
+  // The heading and tagline sit centred between the top inset and the footer.
+  const available = footerBaseline - layout.footerSize * 2 - layout.inset;
+  if (family) {
+    // The family card is the wordmark itself, set large.
+    const cap = layout.wordmarkCap;
+    const top = layout.inset + (available - cap - taglineHeight) / 2;
+    parts.push(lockup(layout.inset, top, cap, 0.5));
+    pushTagline(parts, lines, layout, top + cap + taglineGap, taglineLeading);
+  } else {
+    parts.push(lockup(layout.inset, layout.inset, layout.lockupCap, 0.96));
+    const titleSize = fitSize(identity.name, layout.titleSize, layout.seam - layout.inset * 2, 600);
+    const blockTop = layout.inset + layout.lockupCap;
+    const titleBaseline =
+      blockTop + (available - layout.lockupCap - titleSize * 0.72 - taglineHeight) / 2 + titleSize * 0.72;
+    parts.push(
+      vectorText(identity.name, {
+        x: layout.inset - titleSize * 0.04,
+        baseline: titleBaseline,
+        size: titleSize,
+        weight: 600,
+        fill: light.ink,
+        letterSpacing: -titleSize * 0.012,
+      }).svg,
+    );
+    pushTagline(parts, lines, layout, titleBaseline + taglineGap, taglineLeading);
   }
-  return materialBackground(width, height, seed);
-}
 
-function renderSocial(identity: BrandIdentity, options: RenderOptions & { seed: number }): string {
-  const { width, height } = dimensions.social;
-  const direction = options.direction ?? "engraved";
-  const layout = socialLayout(direction);
-  const titleSize = fitVectorText(identity.name, layout.titleSize, layout.titleWidth, "display", 48, layout.titleWeight);
-  const taglineSize = fitVectorText(identity.tagline, layout.taglineSize, layout.taglineWidth, "sans", 21, 420);
-  const title = vectorText(identity.name, {
-    x: layout.left,
-    baseline: layout.titleBaseline,
-    size: titleSize,
-    fill: "url(#parchment)",
-    family: "display",
-    weight: layout.titleWeight,
-    filter: "url(#engraved-shadow)",
-  }).svg;
-  const tagline = vectorText(identity.tagline, {
-    x: layout.left + 3,
-    baseline: layout.taglineBaseline,
-    size: taglineSize,
-    fill: "url(#parchment)",
-    family: "sans",
-    weight: 420,
-    opacity: 0.95,
-  }).svg;
-  const label = vectorText(identity.shortName, {
-    x: layout.left + 98,
-    baseline: 522,
-    size: 25,
-    fill: "url(#gold)",
-    family: "sans",
-    weight: 480,
-  }).svg;
-
-  const content = [
-    backdrop(width, height, options.seed, options),
-    atmosphericGeometry(direction),
-    frameSvg(width, height, direction),
-    `<path d="M${layout.left + 2} ${layout.ruleY}H${layout.ruleEnd}" fill="none" stroke="${palette.gold}" stroke-width="1.7" opacity=".92"/>`,
-    titleStaffSvg(layout.left + 2, layout.ruleY, -90),
-    titleStaffSvg(layout.ruleEnd, layout.ruleY, 90),
-    title,
-    tagline,
-    `<circle cx="${layout.left + 31}" cy="513" r="27" fill="#09100b" stroke="${identity.accent}" stroke-width="2.2"/>`,
-    sigilSvg(identity.sigil, layout.left + 31, 513, 34, identity.accent, identity.accent),
-    `<path d="M${layout.left + 65} 487V539" stroke="${palette.goldDim}"/>`,
-    label,
-    scaleAround(
-      identity.id === "runic-artifex" ? constellationSvg(direction) : productOrbitSvg(identity, direction),
-      930,
-      316,
-      layout.diagramScale,
-    ),
-  ].join("\n");
-
-  return root(identity, "social", content, options.seed, direction);
-}
-
-function renderBanner(identity: BrandIdentity, options: RenderOptions & { seed: number }): string {
-  const { width, height } = dimensions.banner;
-  const direction = options.direction ?? "engraved";
-  const titleSize = fitVectorText(identity.name, 88, 970, "display", 54);
-  const taglineSize = fitVectorText(identity.tagline, 29, 940, "sans", 22);
-  const title = vectorText(identity.name, {
-    x: 86,
-    baseline: 224,
-    size: titleSize,
-    fill: "url(#parchment)",
-    family: "display",
-    weight: 440,
-    filter: "url(#engraved-shadow)",
-  }).svg;
-  const tagline = vectorText(identity.tagline, {
-    x: 90,
-    baseline: 300,
-    size: taglineSize,
-    fill: "url(#parchment)",
-    family: "sans",
-    opacity: 0.92,
-  }).svg;
-  const content = [
-    backdrop(width, height, options.seed, options),
-    frameSvg(width, height, direction),
-    `<path d="M90 257H1000" fill="none" stroke="${palette.gold}" stroke-width="2" opacity=".8"/>`,
-    titleStaffSvg(90, 257, -90),
-    titleStaffSvg(1000, 257, 90),
-    title,
-    tagline,
-    `<g opacity=".24"><circle cx="1320" cy="240" r="170" fill="none" stroke="${palette.goldDim}"/><circle cx="1320" cy="240" r="135" fill="none" stroke="${palette.goldDim}" stroke-dasharray="4 11"/></g>`,
-    medallionSvg(identity.sigil, 1320, 240, 190, identity.accent),
-  ].join("\n");
-  return root(identity, "banner", content, options.seed, direction);
-}
-
-function renderIcon(identity: BrandIdentity, options: RenderOptions & { seed: number }): string {
-  const { width, height } = dimensions.icon;
-  const direction = options.direction ?? "engraved";
-  const content = [
-    backdrop(width, height, options.seed, options),
-    frameSvg(width, height, direction),
-    `<circle cx="256" cy="256" r="187" fill="none" stroke="${palette.goldDim}" opacity=".34"/>`,
-    `<circle cx="256" cy="256" r="164" fill="none" stroke="${palette.goldDim}" stroke-dasharray="5 14" opacity=".48"/>`,
-    medallionSvg(identity.sigil, 256, 256, 248, identity.accent),
-  ].join("\n");
-  return root(identity, "icon", content, options.seed, direction);
-}
-
-function constellationSvg(direction: ArtDirection): string {
-  const center = direction === "architectural" ? { x: 932, y: 315 } : { x: 930, y: 316 };
-  const productIdentities = identities.filter(
-    (identity) => identity.id !== "runic-artifex" && identity.id !== "runic-docs",
+  parts.push(
+    vectorText(family ? "runic-artifex.eu" : footer, {
+      x: layout.inset,
+      baseline: footerBaseline,
+      size: layout.footerSize,
+      weight: 500,
+      fill: light.inkSoft,
+    }).svg,
   );
-  const radiusX = direction === "architectural" ? 184 : direction === "ritual" ? 198 : 190;
-  const radiusY = direction === "architectural" ? 190 : direction === "ritual" ? 204 : 197;
-  const nodes = productIdentities.map((identity, index) => {
-    const angle = -Math.PI / 2 + (Math.PI * 2 * index) / productIdentities.length;
-    return {
-      identity,
-      x: center.x + Math.cos(angle) * radiusX,
-      y: center.y + Math.sin(angle) * radiusY,
-    };
+  return parts.join("\n");
+}
+
+function pushTagline(parts: string[], lines: string[], layout: Layout, firstBaseline: number, leading: number): void {
+  lines.forEach((text, index) => {
+    parts.push(
+      vectorText(text, {
+        x: layout.inset,
+        baseline: firstBaseline + index * leading,
+        size: layout.taglineSize,
+        weight: 400,
+        fill: light.inkSoft,
+      }).svg,
+    );
   });
-  const nodeDiameter = direction === "architectural" ? 62 : direction === "ritual" ? 75 : 70;
-  const lineDash = direction === "architectural" ? "2 8" : "10 7";
-  const polygon = nodes.map((node) => `${node.x.toFixed(2)},${node.y.toFixed(2)}`).join(" ");
-  return `<g>
-    <g fill="none" stroke="${palette.goldDim}" stroke-width=".75" opacity="${direction === "architectural" ? 0.12 : 0.24}">
-      <ellipse cx="${center.x}" cy="${center.y}" rx="229" ry="142" transform="rotate(28 ${center.x} ${center.y})"/>
-      <ellipse cx="${center.x}" cy="${center.y}" rx="229" ry="142" transform="rotate(-28 ${center.x} ${center.y})"/>
-      <circle cx="${center.x}" cy="${center.y}" r="225" stroke-dasharray="1 13"/>
-      <polygon points="${polygon}"/>
-      <path d="M${center.x - 248} ${center.y - 74}L${center.x + 240} ${center.y + 95}M${center.x - 236} ${center.y + 108}L${center.x + 245} ${center.y - 63}" stroke-dasharray="3 12"/>
-    </g>
-    <ellipse cx="${center.x}" cy="${center.y}" rx="${radiusX + 28}" ry="${radiusY + 15}" fill="none" stroke="${palette.goldDim}" stroke-width=".8" opacity=".2"/>
-    <ellipse cx="${center.x}" cy="${center.y}" rx="${radiusX}" ry="${radiusY}" fill="none" stroke="${palette.goldDim}" stroke-dasharray="4 10" opacity=".58"/>
-    <ellipse cx="${center.x}" cy="${center.y}" rx="143" ry="151" fill="none" stroke="${palette.goldDim}" opacity=".27"/>
-    <path d="M${center.x - radiusX - 47} ${center.y}H${center.x + radiusX + 47}M${center.x} ${center.y - radiusY - 38}V${center.y + radiusY + 38}" stroke="${palette.goldDim}" stroke-width=".8" stroke-dasharray="3 8" opacity=".32"/>
-    ${nodes.map((node) => `<path d="M${center.x} ${center.y}L${node.x.toFixed(2)} ${node.y.toFixed(2)}" stroke="${palette.gold}" stroke-width="1.35" stroke-dasharray="${lineDash}" opacity=".72"/><path d="M${((center.x + node.x) / 2 - 5).toFixed(2)} ${((center.y + node.y) / 2).toFixed(2)}l5-5 5 5-5 5Z" fill="#0b100d" stroke="${palette.gold}" stroke-width="1" opacity=".9"/>`).join("")}
-    ${nodes.map((node) => medallionSvg(node.identity.sigil, node.x, node.y, nodeDiameter, node.identity.accent)).join("")}
-    ${medallionSvg("artifex", center.x, center.y, direction === "ritual" ? 116 : 106, palette.rust, "primary")}
-  </g>`;
 }
 
-function productOrbitSvg(identity: BrandIdentity, direction: ArtDirection): string {
-  const x = 930;
-  const y = 316;
-  const siblings = identities.filter(
-    (candidate) =>
-      candidate.id !== identity.id &&
-      candidate.id !== "runic-artifex" &&
-      candidate.id !== "runic-docs",
-  );
-  const radiusX = 188;
-  const radiusY = 194;
-  const nodes = siblings.map((candidate, index) => {
-    const angle = -Math.PI / 2 + (Math.PI * 2 * index) / siblings.length;
-    return {
-      identity: candidate,
-      x: x + Math.cos(angle) * radiusX,
-      y: y + Math.sin(angle) * radiusY,
-    };
-  });
-  const polygon = nodes.map((node) => `${node.x.toFixed(2)},${node.y.toFixed(2)}`).join(" ");
-  return `<g>
-    <g fill="none" stroke="${palette.goldDim}">
-      <ellipse cx="${x}" cy="${y}" rx="220" ry="213" stroke-width=".7" opacity=".22"/>
-      <ellipse cx="${x}" cy="${y}" rx="${radiusX}" ry="${radiusY}" stroke-dasharray="4 10" opacity=".54"/>
-      <ellipse cx="${x}" cy="${y}" rx="145" ry="150" opacity=".26"/>
-      <ellipse cx="${x}" cy="${y}" rx="220" ry="132" transform="rotate(31 ${x} ${y})" opacity=".17"/>
-      <ellipse cx="${x}" cy="${y}" rx="220" ry="132" transform="rotate(-31 ${x} ${y})" opacity=".17"/>
-      <polygon points="${polygon}" opacity=".24"/>
-      <path d="M${x - 239} ${y}H${x + 239}M${x} ${y - 235}V${y + 235}" stroke-dasharray="2 9" opacity=".28"/>
-    </g>
-    ${nodes.map((node) => `<path d="M${x} ${y}L${node.x.toFixed(2)} ${node.y.toFixed(2)}" stroke="${palette.gold}" stroke-width="1.35" stroke-dasharray="9 8" opacity=".67"/><path d="M${((x + node.x) / 2 - 5).toFixed(2)} ${((y + node.y) / 2).toFixed(2)}l5-5 5 5-5 5Z" fill="#0b100d" stroke="${palette.gold}" stroke-width="1" opacity=".85"/>`).join("")}
-    <g opacity=".72">${nodes.map((node) => medallionSvg(node.identity.sigil, node.x, node.y, 57, node.identity.accent)).join("")}</g>
-    ${medallionSvg(identity.sigil, x, y, direction === "ritual" ? 190 : 176, identity.accent, "primary")}
-  </g>`;
+/** The RUNIC wordmark with the Artifex descriptor on its baseline. */
+function lockup(x: number, top: number, cap: number, descriptor: number): string {
+  const mark = wordmark();
+  const scale = cap / 100;
+  const size = cap * descriptor;
+  const descriptorX = x + mark.width * scale + size * 0.4;
+  return [
+    markGroup(mark, light, { x, y: top, scale }),
+    vectorText("Artifex", {
+      x: descriptorX,
+      baseline: top + cap,
+      size,
+      weight: 500,
+      fill: light.ink,
+    }).svg,
+  ].join("\n");
 }
 
-function socialLayout(direction: ArtDirection): {
-  left: number;
-  titleSize: number;
-  titleWidth: number;
-  titleWeight: number;
-  titleBaseline: number;
-  taglineSize: number;
-  taglineWidth: number;
-  taglineBaseline: number;
-  ruleY: number;
-  ruleEnd: number;
-  diagramScale: number;
-} {
-  if (direction === "architectural") {
-    return { left: 78, titleSize: 86, titleWidth: 560, titleWeight: 400, titleBaseline: 262, taglineSize: 27, taglineWidth: 550, taglineBaseline: 349, ruleY: 299, ruleEnd: 620, diagramScale: 0.86 };
-  }
-  if (direction === "ritual") {
-    return { left: 76, titleSize: 106, titleWidth: 590, titleWeight: 500, titleBaseline: 271, taglineSize: 29, taglineWidth: 570, taglineBaseline: 358, ruleY: 306, ruleEnd: 630, diagramScale: 0.9 };
-  }
-  return { left: 78, titleSize: 104, titleWidth: 580, titleWeight: 500, titleBaseline: 268, taglineSize: 29, taglineWidth: 565, taglineBaseline: 355, ruleY: 304, ruleEnd: 625, diagramScale: 0.88 };
-}
-
-function scaleAround(content: string, x: number, y: number, scale: number): string {
-  return `<g transform="translate(${x} ${y}) scale(${scale}) translate(${-x} ${-y})">${content}</g>`;
-}
-
-function atmosphericGeometry(direction: ArtDirection): string {
-  if (direction === "architectural") {
-    return `<g opacity=".2"><path d="M666 88H1140M666 157H1140M666 226H1140M666 295H1140M666 364H1140M666 433H1140M720 62V560M790 62V560M860 62V560M930 62V560M1000 62V560M1070 62V560" stroke="${palette.goldDim}" stroke-width=".45"/></g>`;
-  }
-  const ritual = direction === "ritual" ? `<g fill="none" stroke="${palette.goldDim}" opacity=".18"><circle cx="930" cy="316" r="259"/><circle cx="930" cy="316" r="238" stroke-dasharray="1 11"/><path d="M747 133L1113 499M1113 133L747 499"/></g>` : "";
-  return ritual;
-}
-
-function titleStaffSvg(x: number, y: number, rotation: -90 | 90): string {
-  return `<g transform="translate(${x} ${y}) rotate(${rotation})" fill="none" stroke="${palette.gold}" stroke-width="1.25" opacity=".82">
-    <path d="M0 0V-42M-10-9L0-19L10-9M-7-27L0-34L7-27M-3-42L0-46L3-42"/>
-    <path d="M-15-4H15M-11-8L-7-4L-11 0M11-8L7-4L11 0"/>
-  </g>`;
-}
-
-function identitySeed(id: string): number {
-  let hash = 17;
-  for (const character of id) hash = (hash * 31 + character.charCodeAt(0)) % 997;
-  return hash;
-}
-
-function escapeXml(value: string): string {
-  return value
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;");
+function fitSize(text: string, preferred: number, maximumWidth: number, weight: Weight): number {
+  const measured = measureVectorText(text, preferred, weight);
+  return measured <= maximumWidth ? preferred : Math.floor(preferred * (maximumWidth / measured));
 }

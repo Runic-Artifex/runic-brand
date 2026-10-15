@@ -35,4 +35,4 @@ jobs:
         run: npm test
 
       - name: Verify committed vector assets
-        run: git diff --exit-code -- ':(glob)assets/generated/**/*.svg'
+        run: git diff --exit-code -- ':(glob)assets/generated/**/*.svg' ':(glob)assets/generated/web/**'
