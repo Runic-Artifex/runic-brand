@@ -209,6 +209,66 @@ test("defines the colour tokens for light and dark schemes", () => {
   assert.doesNotMatch(css, /@import|url\(/u);
 });
 
+/** WCAG 2 relative luminance and contrast ratio of two #rrggbb colours. */
+const channels = (hex) => [1, 3, 5].map((index) => Number.parseInt(hex.slice(index, index + 2), 16) / 255);
+const linear = (value) => (value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4);
+const luminance = (hex) => {
+  const [r, g, b] = channels(hex).map(linear);
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+};
+const contrast = (a, b) => {
+  const [high, low] = [luminance(a), luminance(b)].sort((x, y) => y - x);
+  return (high + 0.05) / (low + 0.05);
+};
+/** OKLCH hue in degrees (Björn Ottosson's OKLab). */
+const oklchHue = (hex) => {
+  const [r, g, b] = channels(hex).map(linear);
+  const l = Math.cbrt(0.4122214708 * r + 0.5363325363 * g + 0.0514459929 * b);
+  const m = Math.cbrt(0.2119034982 * r + 0.6806995451 * g + 0.1073969566 * b);
+  const s = Math.cbrt(0.0883024619 * r + 0.2817188376 * g + 0.6299787005 * b);
+  const a = 1.9779984951 * l - 2.428592205 * m + 0.4505937099 * s;
+  const bb = 0.0259040371 * l + 0.7827717662 * m - 0.808675766 * s;
+  return ((Math.atan2(bb, a) * 180) / Math.PI + 360) % 360;
+};
+const hueDistance = (a, b) => {
+  const difference = Math.abs(oklchHue(a) - oklchHue(b));
+  return Math.min(difference, 360 - difference);
+};
+
+test("text colours meet WCAG AA on stone and raised in both schemes", () => {
+  for (const [name, scheme] of Object.entries(palette)) {
+    for (const token of ["ink", "inkSoft", "paint", "error", "warning", "done"]) {
+      for (const ground of ["stone", "raised"]) {
+        const ratio = contrast(scheme[token], scheme[ground]);
+        assert.ok(ratio >= 4.5, `${name} ${token} on ${ground} is ${ratio.toFixed(2)}:1; text needs 4.5:1`);
+      }
+    }
+  }
+});
+
+test("state colours keep their hue family and stay apart from paint", () => {
+  // Crimson, ochre and moss, as OKLCH hue ranges in degrees.
+  const families = { error: [350, 20], warning: [65, 95], done: [135, 170] };
+  const inFamily = (hue, [from, to]) => (from <= to ? hue >= from && hue <= to : hue >= from || hue <= to);
+  for (const [name, scheme] of Object.entries(palette)) {
+    for (const [token, family] of Object.entries(families)) {
+      const hue = oklchHue(scheme[token]);
+      assert.ok(inFamily(hue, family), `${name} ${token} hue ${hue.toFixed(1)} is outside ${family.join("-")}`);
+      const distance = hueDistance(scheme[token], scheme.paint);
+      assert.ok(distance >= 30, `${name} ${token} is ${distance.toFixed(1)} degrees of OKLCH hue from paint; it needs 30`);
+    }
+  }
+});
+
+test("tokens.css defines the state colours in both schemes", () => {
+  const css = tokensCss();
+  const darkStart = css.search(/prefers-color-scheme:\s*dark/u);
+  for (const token of ["error", "warning", "done"]) {
+    assert.ok(css.slice(0, darkStart).includes(`--rune-${token}: ${palette.light[token]};`), `light --rune-${token}`);
+    assert.ok(css.slice(darkStart).includes(`--rune-${token}: ${palette.dark[token]};`), `dark --rune-${token}`);
+  }
+});
+
 test("committed vector sources and web exports match the renderer", async () => {
   for (const identity of identities) {
     for (const format of formats) {

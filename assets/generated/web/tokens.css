@@ -7,6 +7,9 @@
   --rune-ink-soft: #4e565b;
   --rune-groove: #c8cac2;
   --rune-paint: #ae3b23;
+  --rune-error: #9a2450;
+  --rune-warning: #86610f;
+  --rune-done: #3c6a4c;
   --rune-font-sans:
     'Schibsted Grotesk Variable', 'Schibsted Grotesk', system-ui, sans-serif;
   --rune-font-mono:
@@ -22,6 +25,9 @@
     --rune-ink-soft: #a3a9a6;
     --rune-groove: #30363a;
     --rune-paint: #e4704f;
+    --rune-error: #e0708f;
+    --rune-warning: #d9b25a;
+    --rune-done: #7fb58f;
   }
 }
 
@@ -33,4 +39,7 @@
   --rune-ink-soft: #a3a9a6;
   --rune-groove: #30363a;
   --rune-paint: #e4704f;
+  --rune-error: #e0708f;
+  --rune-warning: #d9b25a;
+  --rune-done: #7fb58f;
 }

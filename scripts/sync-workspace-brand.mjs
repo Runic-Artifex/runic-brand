@@ -34,8 +34,11 @@ const sharedWebAssets = (publicDirectory) => [
   ["web/tokens.css", "src/lib/brand/tokens.css"],
 ];
 const webAssets = new Map([
-  // The Editor's window and sidebar use its application icon.
-  ["runic-translations-sdk", [["runic-translations-editor/icon.png", "apps/translations-editor/Frontend/static/brand/icon.png"]]],
+  // The Editor's window and sidebar use its application icon; its frontend reads the colour tokens.
+  ["runic-translations-sdk", [
+    ["runic-translations-editor/icon.png", "apps/translations-editor/Frontend/static/brand/icon.png"],
+    ["web/tokens.css", "apps/translations-editor/Frontend/src/lib/brand/tokens.css"],
+  ]],
   ["runic-site", [
     ["runic-artifex/social.png", "static/og.png"],
     ["runic-artifex/icon.png", "static/icon.png"],

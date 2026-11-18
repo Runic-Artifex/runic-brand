@@ -145,10 +145,34 @@ artwork.
 | `ink-soft` | `#4e565b` | `#a3a9a6` | Secondary text |
 | `groove` | `#c8cac2` | `#30363a` | Rules and borders |
 | `paint` | `#ae3b23` | `#e4704f` | Twigs, the crossing in code, link accents, focus, current place |
+| `error` | `#9a2450` | `#e0708f` | State: something failed or is invalid |
+| `warning` | `#86610f` | `#d9b25a` | State: something needs attention but still works |
+| `done` | `#3c6a4c` | `#7fb58f` | State: something is complete |
 
 Every text pairing meets WCAG AA. Paint on stone is 5.2:1 in light and 5.7:1
 in dark. Groove is decorative; a control that needs a visible boundary uses
 ink or a filled background.
+
+### State colours
+
+Error (crimson), warning (ochre) and done (moss) report the state of
+something: a message that failed validation, a translation that needs review,
+a step that is complete. They are not paint, and they are never decoration.
+
+- Use a state colour only for an actual state, and remove it when the state
+  goes away. Never use one for emphasis, a heading, a brand accent or a
+  background wash.
+- Never use paint for a state, and never a state colour for links, focus or
+  the current place. Error is crimson, bluer than paint's red ochre, and stays
+  at least 30 degrees of OKLCH hue away from it, so an error is not mistaken
+  for the current place or a placeholder.
+- Never let colour carry a state alone. Pair it with a shape (an icon, a
+  marker, a border style) or with text that names the state, so it reads in
+  greyscale, for colour-blind readers and for screen readers.
+
+Each state colour meets 4.5:1 as text on `stone` and on `raised` in both
+schemes; `tests/brand.test.mjs` enforces this and the hue distance from paint.
+On `sunk`, use them for icons and borders rather than small text.
 
 Documentation may use three functional pigments for notices, and only there:
 woad `#2f5d8a` / `#8fb3da` for notes, verdigris `#2e6b55` / `#7cc2a3` for tips,

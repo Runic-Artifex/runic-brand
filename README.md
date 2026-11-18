@@ -64,7 +64,7 @@ does not accept SVG.
 | `marks/<identity>.svg`, `marks/<identity>-dark.svg` | Each identity's glyph for light and dark backgrounds |
 | `marks/wordmark.svg`, `marks/wordmark-dark.svg` | The RUNIC wordmark |
 | `marks.json` | Wordmark and glyph outlines as `ink` and `paint` path data, for inline SVG |
-| `tokens.css` | The palette as `--rune-*` custom properties for light and dark schemes, plus font stacks |
+| `tokens.css` | The palette (`stone`, `raised`, `sunk`, `ink`, `ink-soft`, `groove`, `paint`) and the state colours (`error`, `warning`, `done`) as `--rune-*` custom properties for light and dark schemes, plus font stacks |
 
 `tokens.css` follows `prefers-color-scheme` and can be forced with
 `data-scheme="light"` or `data-scheme="dark"` on the root element. Websites
@@ -121,6 +121,7 @@ repositories of this checkout, to the places those repositories read them:
 | `runic-translations-sdk` | `eng/branding/translations/` | Runic Translations | NuGet icons through `eng/build/translations.props` |
 | `runic-translations-sdk` | `apps/translations-editor/.github/assets/brand/` | Runic Translations Editor | Editor README banner |
 | `runic-translations-sdk` | `apps/translations-editor/Frontend/static/brand/icon.png` | Runic Translations Editor | Editor window and sidebar |
+| `runic-translations-sdk` | `apps/translations-editor/Frontend/src/lib/brand/tokens.css` | Runic Translations Editor | Editor frontend colour tokens |
 | `runic-site` | `static/og.png`, `static/icon.png`, `static/favicon.svg`, `static/brand/marks/`, `src/lib/brand/marks.json`, `src/lib/brand/tokens.css` | Runic Artifex | Website |
 | `runic-site` | `docs/public/og.png`, `docs/public/icon.png`, `docs/public/favicon.svg`, `docs/public/brand/marks/`, `docs/src/lib/brand/` | Runic Documentation | Documentation portal |
 
@@ -159,8 +160,11 @@ npm test
 - every SVG passes the security check: no scripts, event handlers, styles,
   external or data references, and bounded size and complexity;
 - `marks.json` holds the wordmark and every glyph as path data, and
-  `tokens.css` defines the palette without imports or URLs;
-- the npm package contains exactly the generated assets and manifests; and
+  `tokens.css` defines the palette and state colours without imports or URLs;
+- the npm package contains exactly the generated assets and manifests;
+- every text colour meets 4.5:1 on `stone` and `raised` in both schemes, and
+  the state colours keep their hue family and stay 30 degrees of OKLCH hue
+  from paint; and
 - the tests prove that rendering is deterministic, text is converted to paths,
   committed SVG and web files match a fresh render, and rasterized PNGs have the
   canonical dimensions.

@@ -178,7 +178,9 @@ function validateMarkData(text, label, brand) {
 }
 
 function validateTokens(text, label) {
-  if (!text.includes("--rune-paint:")) fail(`${label}: must define --rune-paint.`);
+  for (const token of ["paint", "error", "warning", "done"]) {
+    if (!text.includes(`--rune-${token}:`)) fail(`${label}: must define --rune-${token}.`);
+  }
   const normalized = text.toLowerCase();
   if (normalized.includes("@import")) fail(`${label}: must not import other stylesheets.`);
   if (normalized.includes("url(")) fail(`${label}: must not reference URLs.`);

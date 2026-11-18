@@ -56,6 +56,10 @@ test("synchronizes and checks brand assets in the current workspace layout", asy
     await readFile(join(workspace, "runic-translations-sdk/apps/translations-editor/Frontend/static/brand/icon.png")),
     await readFile(generated("runic-translations-editor/icon.png")),
   );
+  assert.deepEqual(
+    await readFile(join(workspace, "runic-translations-sdk/apps/translations-editor/Frontend/src/lib/brand/tokens.css")),
+    await readFile(generated("web/tokens.css")),
+  );
   // Retired targets are no longer written.
   await assert.rejects(access(join(workspace, "runic-sdk/eng/branding/svelte")));
 
