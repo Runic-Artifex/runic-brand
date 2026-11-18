@@ -40,6 +40,12 @@ export type Scheme = {
   inkSoft: string;
   groove: string;
   paint: string;
+  /** State colour: something failed or is invalid. Never paint, never decoration. */
+  error: string;
+  /** State colour: something needs attention but is not broken. */
+  warning: string;
+  /** State colour: something is complete. */
+  done: string;
 };
 
 export type BrandPalette = {
